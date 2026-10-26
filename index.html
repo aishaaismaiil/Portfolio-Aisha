@@ -1,1 +1,291 @@
 
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Aisha Ismail — criação de websites e soluções digitais para pequenos negócios.">
+  <title>Aisha Ismail | Websites e Projetos Digitais</title>
+  <style>
+    :root {
+      --bg: #f6f8f7;
+      --ink: #172b35;
+      --muted: #60737b;
+      --accent: #156b65;
+      --soft: #dcece7;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font: 16px/1.65 system-ui, Arial, sans-serif;
+    }
+    a { color: inherit; }
+    nav, main, footer {
+      max-width: 1080px;
+      margin: auto;
+      padding: 24px;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand {
+      font-size: 20px;
+      font-weight: 800;
+    }
+    .links { display: flex; gap: 20px; }
+    .links a { text-decoration: none; }
+    .hero {
+      padding: 90px 0 75px;
+      max-width: 800px;
+    }
+    .eyebrow {
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    h1 {
+      font-size: clamp(40px, 7vw, 76px);
+      line-height: 1.08;
+      letter-spacing: -3px;
+      margin: 16px 0 24px;
+    }
+    h2 {
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.2;
+    }
+    h3 { margin-bottom: 8px; }
+    .lead {
+      font-size: 19px;
+      color: var(--muted);
+      max-width: 650px;
+    }
+    .btn {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      text-decoration: none;
+      border-radius: 9px;
+      padding: 12px 20px;
+      font-weight: 700;
+      margin: 12px 12px 0 0;
+    }
+    .btn.alt {
+      background: transparent;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+    }
+    section { padding: 45px 0; }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .card, .project {
+      background: white;
+      border: 1px solid #e0e9e6;
+      border-radius: 16px;
+      padding: 25px;
+    }
+    .card p, .muted { color: var(--muted); }
+    .pill {
+      display: inline-block;
+      background: var(--soft);
+      color: #19594f;
+      border-radius: 30px;
+      padding: 4px 10px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+    .preview {
+      min-height: 190px;
+      background: linear-gradient(130deg, #d6e8e4, #f4eee2);
+      border-radius: 12px;
+      padding: 30px;
+      margin-bottom: 20px;
+    }
+    .preview h3 {
+      font-size: 32px;
+      letter-spacing: -1px;
+    }
+    .about {
+      background: #eaf2ee;
+      border-radius: 18px;
+      padding: 30px;
+    }
+    .contact {
+      background: #163b39;
+      color: white;
+      border-radius: 18px;
+      padding: 35px;
+    }
+    .contact p { color: #cfe2dc; }
+    .contact .btn {
+      background: white;
+      color: #163b39;
+    }
+    footer {
+      color: var(--muted);
+      font-size: 13px;
+    }
+    @media (max-width: 740px) {
+      .cards, .projects { grid-template-columns: 1fr; }
+      .hero { padding: 55px 0; }
+      nav, main, footer { padding: 18px; }
+      .links { gap: 10px; font-size: 13px; }
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <div class="brand">Aisha Ismail.</div>
+    <div class="links">
+      <a href="#servicos">Serviços</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+  </nav>
+
+  <main>
+    <header class="hero">
+      <div class="eyebrow">Websites · Eventos · Projetos Digitais</div>
+      <h1>Uma presença digital simples, clara e feita para o teu negócio.</h1>
+      <p class="lead">
+        Ajudo pequenos negócios e projetos independentes a apresentar
+        os seus serviços online, divulgar eventos e facilitar
+        pedidos de contacto ou inscrição.
+      </p>
+      <a class="btn" href="mailto:tasmiya.ismail07@gmail.com?subject=Pedido%20de%20or%C3%A7amento">
+        Pedir orçamento
+      </a>
+      <a class="btn alt" href="#projetos">Ver projetos</a>
+    </header>
+
+    <section id="servicos">
+      <div class="eyebrow">O que posso criar</div>
+      <h2>Serviços digitais com objetivos concretos.</h2>
+
+      <div class="cards">
+        <article class="card">
+          <span class="pill">01</span>
+          <h3>Websites de apresentação</h3>
+          <p>
+            Websites adaptados a telemóveis para apresentar
+            serviços, localização, horários e contactos.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="pill">02</span>
+          <h3>Páginas de eventos</h3>
+          <p>
+            Páginas para workshops, encontros e formações,
+            com informações organizadas e formulários de interesse.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="pill">03</span>
+          <h3>Melhorias em websites</h3>
+          <p>
+            Reorganização de conteúdos, melhorias visuais
+            e de navegação, após análise do website existente.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="projetos">
+      <div class="eyebrow">Portefólio</div>
+      <h2>Projetos e demonstrações.</h2>
+
+      <div class="projects">
+        <article class="project">
+          <div class="preview">
+            <span class="pill">Projeto próprio</span>
+            <h3>Anfitriu</h3>
+            <p>Oportunidades, experiências e comunidade universitária.</p>
+          </div>
+          <h3>Anfitriu</h3>
+          <p>
+            Plataforma digital direcionada a estudantes
+            universitários, atualmente em desenvolvimento e validação.
+          </p>
+          <a href="https://aishaaismaiil.github.io/Anfitriu/"
+             target="_blank" rel="noopener">
+            Ver projeto ↗
+          </a>
+        </article>
+
+        <article class="project">
+          <div class="preview" style="background:linear-gradient(130deg,#e8d9c9,#f7f1e7)">
+            <span class="pill">Demonstração fictícia</span>
+            <h3>Atelier Aurora</h3>
+            <p>Workshops criativos e experiências de cerâmica.</p>
+          </div>
+          <h3>Atelier Aurora</h3>
+          <p>
+            Conceito demonstrativo de website para divulgar
+            workshops e facilitar pedidos de inscrição.
+            Não representa um cliente real.
+          </p>
+          <a href="demo-atelier.html">Ver demonstração ↗</a>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="about">
+        <div class="eyebrow">Sobre mim</div>
+        <h2>Investigação, criatividade e atenção ao detalhe.</h2>
+        <p>
+          Sou licenciada em Biologia e estudante de Psicologia.
+          Paralelamente, desenvolvo projetos digitais e estou
+          a iniciar a prestação independente de serviços web.
+        </p>
+        <p>
+          Procuro criar soluções claras, funcionais e adaptadas
+          às necessidades reais de cada projeto.
+        </p>
+        <p class="muted">
+          Cada trabalho é definido previamente através de uma
+          proposta com âmbito, preço, prazo e revisões.
+        </p>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <div class="contact">
+        <div class="eyebrow" style="color:#a6d8c9">Vamos conversar?</div>
+        <h2>Conta-me o que precisas.</h2>
+        <p>
+          Envia uma breve descrição do teu negócio e do
+          objetivo do website. Podemos avaliar a melhor solução.
+        </p>
+        <a class="btn"
+           href="mailto:tasmiya.ismail07@gmail.com?subject=Website%20-%20Pedido%20de%20or%C3%A7amento">
+          Contactar por email
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 Aisha Ismail · Portefólio pessoal
+  </footer>
+</body>
+</html>
+
