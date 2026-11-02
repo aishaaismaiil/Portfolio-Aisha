@@ -26,3 +26,9 @@ Os projetos LifeLab, SENSORA e ConduzPT estão organizados neste repositório. O
 ## Supabase
 
 Sete tabelas com RLS no projeto Supabase Stellamus, com separação lógica por projeto e por utilizador. Migração em `database/schema.sql`, verificação de isolamento em `tests/rls.sql`, configuração pública e adaptador em `backend/`. A migração já foi aplicada, não a executar de novo. O adaptador ainda não está ligado à interface de login/guardar do LifeLab. A IA livre precisa de backend e de um fornecedor configurado no servidor.
+
+## Idiomas do portefólio
+
+O seletor PT / EN está nas páginas de apresentação e privacidade. A versão inglesa encontra-se em `en/`. Os links entre páginas mantêm a língua. As plataformas externas e o protótipo LifeLab conservam os seus próprios controlos de idioma.
+
+Editar as páginas portuguesas e o dicionário `translations/en.tsv`, depois executar `python scripts/build_english.py` a partir da raiz do repositório. A geração falha se encontrar texto sem tradução. Não depende de serviços de tradução nem de cookies de idioma.
