@@ -1,6 +1,6 @@
 <!doctype html><html lang="pt-PT"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>LifeLab</title>
-
+<meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap">
 <style>
@@ -673,6 +673,84 @@ main > *:nth-child(2){animation-delay:.05s} main > *:nth-child(3){animation-dela
 .cu-warn{font-size:.8rem;color:var(--bad);font-weight:600}
 .src a{color:var(--muted)}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}.lifelines .ll{stroke-dashoffset:0}.lifelines .lln{opacity:1}}
+
+/* ===== v1.0: máquina do tempo, ajuda prática e contas ===== */
+.diff{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 18px}
+.diff>div{display:grid;gap:4px;padding:12px 14px;border-radius:14px;border:1px solid var(--line);background:var(--surface)}
+.diff>div.on{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.diff b{display:flex;align-items:center;gap:8px;font-size:.95rem}.diff span{font-size:.86rem;color:var(--muted);line-height:1.4}
+@media (max-width:640px){.diff{grid-template-columns:1fr}}
+.tm-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:12px;margin-bottom:14px}
+.tm-head h2{margin:.2rem 0}.tm-head p{margin:0;max-width:60ch;color:var(--muted)}
+.tm-ctl{position:sticky;top:0;z-index:5;display:grid;grid-template-columns:auto 1fr;align-items:center;gap:8px 16px;padding:12px 14px;margin-bottom:14px;border-radius:16px;background:var(--surface);border:1px solid var(--line);box-shadow:0 6px 20px rgba(0,0,0,.06)}
+.tm-now{display:grid;line-height:1.15}.tm-when{font:800 1.35rem/1.1 var(--f-disp,inherit);text-transform:capitalize}.tm-age{font-size:.82rem;color:var(--muted)}
+.tm-btns{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end}
+.tm-btns .ib{min-width:40px;height:38px;padding:0 10px;border-radius:10px;border:1px solid var(--line);background:var(--surface2);color:var(--ink);font:700 .9rem/1 inherit;cursor:pointer}
+.tm-btns .ib:hover:not(:disabled){border-color:var(--c,var(--accent))}.tm-btns .ib:disabled{opacity:.35;cursor:default}
+.tm-btns .ib.play{background:var(--c,var(--accent));border-color:transparent;color:#fff;min-width:52px}
+.tm-sep{width:1px;background:var(--line);margin:0 4px}
+#tmRange{grid-column:1/-1;width:100%;accent-color:var(--c,var(--accent));height:28px}
+.tm-ctl .note{grid-column:1/-1;margin:0}
+@media (max-width:700px){.tm-ctl{grid-template-columns:1fr}.tm-btns{justify-content:flex-start}.tm-ctl .note{display:none}}
+.tm-flash{padding:10px 14px;margin-bottom:12px;border-radius:12px;background:color-mix(in srgb,var(--c,var(--accent)) 14%,transparent);border:1px solid color-mix(in srgb,var(--c,var(--accent)) 40%,transparent);font-size:.9rem}
+.tmc svg{width:100%;height:auto;display:block}.tmc .gl{stroke:var(--line);stroke-width:1}.tmc .zero{stroke:var(--bad);stroke-width:1;stroke-dasharray:3 4}
+.tmc .cur{stroke:var(--ink);stroke-width:1.5;stroke-dasharray:4 4}.tmc .curd{fill:var(--surface);stroke:var(--ink);stroke-width:3}
+.tmc .mk{fill:var(--surface);stroke-width:2.5}.tmc .mk.rec{stroke:var(--ok)}.tmc .mk.alt{stroke:var(--l-amber)}.tmc .mk.skip{stroke:var(--bad);fill:var(--bad)}
+.legend .lk{display:inline-block;width:10px;height:10px;border-radius:50%;border:2.5px solid;background:transparent!important}
+.legend .lk.ok{border-color:var(--ok)}.legend .lk.alt{border-color:var(--l-amber)}.legend .lk.skip{border-color:var(--bad);background:var(--bad)!important}
+.tm-gauges{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:14px 0}
+.tm-gauges .gauge{display:grid;gap:2px;padding:12px;border-radius:14px;background:var(--surface);border:1px solid var(--line)}
+.tm-gauges .gn{font-size:.78rem;color:var(--muted)}.tm-gauges b{font-size:1.25rem}.tm-gauges b.neg{color:var(--bad)}.tm-gauges small{font-size:.72rem;color:var(--muted)}
+.tm-gauges .gd{justify-self:start;font-size:.76rem;font-weight:700;padding:1px 7px;border-radius:999px}.tm-gauges .gd.good{color:var(--ok);background:color-mix(in srgb,var(--ok) 14%,transparent)}.tm-gauges .gd.bad{color:var(--bad);background:color-mix(in srgb,var(--bad) 14%,transparent)}
+@media (max-width:700px){.tm-gauges{grid-template-columns:1fr 1fr}}
+.tm-now-ev,.tm-decs{padding:14px;border-radius:16px;background:var(--surface);border:1px solid var(--line);margin-bottom:14px}
+.tm-now-ev h3,.tm-decs h3{margin:0 0 8px;font-size:1.02rem;text-transform:none}.tm-now-ev h4{margin:12px 0 6px;font-size:.86rem;color:var(--muted)}
+.tm-ev{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.tm-ev li{display:grid;grid-template-columns:86px 1fr;gap:10px;padding:8px 10px;border-radius:10px;background:var(--surface2);font-size:.9rem;line-height:1.4;border-left:3px solid var(--line2)}
+.tm-ev li>span,.tm-ev li>.linkbtn{font-size:.76rem;color:var(--muted);text-transform:capitalize;text-align:left}
+.tm-ev li.ok{border-left-color:var(--ok)}.tm-ev li.alt,.tm-ev li.warn{border-left-color:var(--l-amber)}.tm-ev li.bad{border-left-color:var(--bad)}.tm-ev li.money{border-left-color:var(--l-blue)}.tm-ev li.later{border-left-color:var(--l-violet)}
+.tmdl{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.tmd{display:grid;grid-template-columns:86px 1fr;gap:10px;padding:10px;border-radius:12px;background:var(--surface2);border:1px solid transparent}
+.tmd.alt{border-color:color-mix(in srgb,var(--l-amber) 50%,transparent)}.tmd.skip{border-color:color-mix(in srgb,var(--bad) 50%,transparent)}
+.tmd-m{font-size:.76rem;color:var(--muted);text-transform:capitalize;padding-top:2px}
+.tmd-b{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}.tmd-b b{flex:1 1 100%;font-size:.92rem}
+.seg.sm button{padding:5px 9px;font-size:.78rem}
+.brc{display:inline-flex;align-items:center;gap:2px}.brc i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+.brc .x{border:0;background:none;color:var(--muted);font-size:1rem;cursor:pointer;padding:0 6px}
+.tm-t{width:100%;border-collapse:collapse;font-size:.84rem}.tm-t th,.tm-t td{padding:6px 4px;text-align:right;border-bottom:1px solid var(--line)}.tm-t th:first-child,.tm-t td:first-child{text-align:left}
+.tm-t td i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px}.tm-t tr.on td{font-weight:700}
+.tmcta{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding:16px;margin:18px 0;border-radius:16px;background:color-mix(in srgb,var(--c,var(--accent)) 10%,var(--surface));border:1px solid color-mix(in srgb,var(--c,var(--accent)) 35%,transparent)}
+.tmcta b{display:flex;align-items:center;gap:8px;font-size:1.02rem}.tmcta p{margin:.3rem 0 0;max-width:56ch;color:var(--muted);font-size:.9rem}
+.hk .hb button[aria-pressed="true"]{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.hk-p{display:grid;gap:10px;margin-top:10px;padding-top:10px;border-top:1px dashed var(--line)}
+.hk-p textarea{width:100%;min-height:200px;font:inherit;font-size:.88rem;line-height:1.45}
+.hk-p input[type=email],.hk-p input[type=text]{width:100%}
+.hk-pre{white-space:pre-wrap;margin:0;padding:12px;border-radius:12px;background:var(--surface2);font:inherit;font-size:.9rem;line-height:1.5}
+.hk-list{list-style:none;margin:0;padding:0;display:grid;gap:6px}.hk-list label{display:flex;gap:10px;align-items:flex-start;font-size:.9rem;line-height:1.4;cursor:pointer}
+.hk-list input{margin-top:3px;width:18px;height:18px;accent-color:var(--ok)}
+.calc{display:grid;gap:8px;padding:12px;border-radius:14px;background:var(--surface2);margin-bottom:10px}
+.calc h4{margin:0;font-size:.95rem}.cin{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
+.cout{display:grid;gap:4px}.cr{display:flex;justify-content:space-between;gap:10px;padding:6px 10px;border-radius:9px;background:var(--surface);font-size:.86rem}
+.cr b{text-align:right}.cr.strong{background:color-mix(in srgb,var(--ok) 14%,var(--surface))}.cr.strong b{font-size:1rem}
+.calc .note{margin:0}
+
+.tm{min-width:0;max-width:100%}.tm .split{min-width:0}.tm .split>*{min-width:0}.tm-ev li,.tm-ev li>*,.tmd-b{min-width:0;overflow-wrap:anywhere}
+.tm-head>div:first-child{flex:1 1 360px;min-width:0}.tm .forks .seg{flex-wrap:wrap}.tm .numf{min-width:0}.tm .numf input{min-width:0;max-width:130px}
+.tm .box-h small{display:block;font-weight:400;color:var(--muted);font-size:.74rem}
+.tm-ev li{grid-template-columns:86px minmax(0,1fr)}.tmd{grid-template-columns:86px minmax(0,1fr)}
+.tm p,.tm li,.tm .hint,.tm .note,.tm span{white-space:normal}
+.tm .nums .numf{display:grid;grid-template-columns:1fr;gap:4px}.tm .nums .numf input{max-width:none;width:100%}
+@media (max-width:700px){.tm-ev li,.tmd{grid-template-columns:1fr;gap:2px}}
+.tm-gauges .gauge{min-width:0}.tm-gauges small,.tm small{white-space:normal;overflow-wrap:anywhere}
+.hk-p textarea{font-weight:400}
+.tm-spins{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center}
+.spin{display:inline-flex;align-items:center;gap:6px;padding:4px 6px 4px 12px;border-radius:12px;background:var(--surface2);border:1px solid var(--line)}
+.spin-l{font-size:.8rem;color:var(--muted);margin-right:2px}.spin b{min-width:74px;text-align:center;font-size:.95rem}
+.spin .sb{width:32px;height:30px;border-radius:9px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-size:.8rem;cursor:pointer}
+.spin .sb:hover:not(:disabled){border-color:var(--c,var(--accent))}.spin .sb:disabled{opacity:.3;cursor:default}
+.spin.quick{padding:4px;gap:4px}.qj{padding:5px 10px;border-radius:8px;border:1px solid transparent;background:none;color:var(--ink);font-size:.8rem;cursor:pointer}
+.qj[aria-pressed="true"]{background:var(--c,var(--accent));color:#fff}
+.tm-btns .ib{white-space:nowrap}
 </style>
 
 <div class="app">
@@ -1123,8 +1201,8 @@ pt:{tab_simular:"Simular",tab_planear:"Planear",tab_comparar:"Comparar",tab_mito
  c_arrive:"Chegas lá aos",c_steps_of:"{n} de passos",c_oneoff:"Custos únicos",c_monthly:"depois ~{v}/mês",c_nomonthly:"sem custo fixo mensal",c_stops:"Paragens",c_already:"já tens ou fizeste {n}",c_risk:"Risco",c_safest:"o mais seguro",c_freedom:"Liberdade",c_freest:"o mais livre",c_where:"Onde vais ter de ir",c_obl:"Obrigações que ficam",c_later:"Daqui a uns anos",c_hidden:"Escondido",c_open:"Abrir o mapa completo",best:"melhor",
  sim_h:"Decide algo e |avança no tempo|.",sim_p:"Conta o que queres criar ou decidir. A simulação adapta-se ao teu caso: um centro de estética não é uma clínica, e um teste no 12.º ano não é um exame na faculdade.",
  sim_what:"O que queres criar ou decidir?",sim_what_ph:"Ex.: abrir um centro de estética",sim_det:"Detalhes que mudam tudo",sim_det_ph:"Ex.: sou esteticista há 5 anos, quero abrir em Braga com uma sócia e 8.000 €. Ou: estou no 12.º, quero Medicina e tenho 17,2 de média.",
- sim_go:"Começar a simulação",sim_loading:"A preparar…",sim_note:"Cada passo usa o teu serviço de IA; na primeira vez pede autorização. É uma simulação: serve para pensar, não para decidir sozinho(a).",sim_guided:"Não sabes por onde começar? Experimenta a vida guiada, com perguntas.",
- sim_off:"O simulador usa o serviço de IA para criar consequências à medida do teu cenário e só funciona quando abres o LifeLab dentro do serviço de IA. As outras secções funcionam aqui na mesma.",
+ sim_go:"Começar a simulação",sim_loading:"A preparar…",sim_note:"Cada passo usa o teu Claude; na primeira vez pede autorização. É uma simulação: serve para pensar, não para decidir sozinho(a).",sim_guided:"Não sabes por onde começar? Experimenta a vida guiada, com perguntas.",
+ sim_off:"O simulador usa o Claude para criar consequências à medida do teu cenário e só funciona quando abres o LifeLab dentro do Claude. As outras secções funcionam aqui na mesma.",
  sim_start_msg:"A montar o ponto de partida…",sim_step_msg:"A avançar {j} no tempo… pode demorar uns segundos.",
  sim_now:"O que fazes agora?",sim_end:"Esta história chegou a um fim natural. Queres continuar?",sim_own:"Ou escreve a tua própria decisão",sim_own_ph:"Ex.: contrato uma enfermeira para os tratamentos com injetáveis",sim_jump:"Quanto tempo passa?",sim_adv:"Avançar {j}",
  sim_undo:"Desfazer último passo",sim_new:"Nova simulação",sim_cmp:"Comparar caminhos",sim_whatif:"E se tivesse decidido outra coisa aqui?",sim_onde:"Onde tratar isto na vida real",sim_surprise:"Imprevisto",steps_n:"passos",path:"Caminho",
@@ -1155,8 +1233,8 @@ en:{tab_simular:"Simulate",tab_planear:"Plan",tab_comparar:"Compare",tab_mitos:"
  c_arrive:"You get there at",c_steps_of:"{n} of steps",c_oneoff:"One-off costs",c_monthly:"then ~{v}/month",c_nomonthly:"no fixed monthly cost",c_stops:"Stops",c_already:"{n} already done",c_risk:"Risk",c_safest:"the safest",c_freedom:"Freedom",c_freest:"the most freedom",c_where:"Where you'll need to go",c_obl:"Ongoing obligations",c_later:"A few years on",c_hidden:"Hidden",c_open:"Open the full map",best:"best",
  sim_h:"Make a decision and |move through time|.",sim_p:"Tell us what you want to create or decide. The simulation adapts to your case: a beauty salon isn't a clinic, and a high-school test isn't a university exam.",
  sim_what:"What do you want to create or decide?",sim_what_ph:"E.g. open a beauty salon",sim_det:"Details that change everything",sim_det_ph:"E.g. I've been a beautician for 5 years and want to open in Braga with a partner and €8,000. Or: I'm in my last year of secondary school, I want Medicine and my average is 17.2.",
- sim_go:"Start the simulation",sim_loading:"Getting ready…",sim_note:"Each step uses your serviço de IA; the first time it asks for permission. It's a simulation: it helps you think, not decide on your own.",sim_guided:"Not sure where to start? Try the guided life, with questions.",
- sim_off:"The simulator uses serviço de IA to create consequences tailored to your scenario and only works when you open LifeLab inside serviço de IA. The other sections still work here.",
+ sim_go:"Start the simulation",sim_loading:"Getting ready…",sim_note:"Each step uses your Claude; the first time it asks for permission. It's a simulation: it helps you think, not decide on your own.",sim_guided:"Not sure where to start? Try the guided life, with questions.",
+ sim_off:"The simulator uses Claude to create consequences tailored to your scenario and only works when you open LifeLab inside Claude. The other sections still work here.",
  sim_start_msg:"Setting up the starting point…",sim_step_msg:"Moving {j} forward… this can take a few seconds.",
  sim_now:"What do you do now?",sim_end:"This story has reached a natural end. Want to keep going?",sim_own:"Or write your own decision",sim_own_ph:"E.g. I hire a nurse for the injectable treatments",sim_jump:"How much time passes?",sim_adv:"Move {j} forward",
  sim_undo:"Undo last step",sim_new:"New simulation",sim_cmp:"Compare paths",sim_whatif:"What if I'd decided differently here?",sim_onde:"Where to sort this out in real life",sim_surprise:"Surprise",steps_n:"steps",path:"Path",
@@ -1187,8 +1265,8 @@ es:{tab_simular:"Simular",tab_planear:"Planificar",tab_comparar:"Comparar",tab_m
  c_arrive:"Llegas a los",c_steps_of:"{n} de pasos",c_oneoff:"Costes únicos",c_monthly:"después ~{v}/mes",c_nomonthly:"sin coste fijo mensual",c_stops:"Paradas",c_already:"{n} ya hechas",c_risk:"Riesgo",c_safest:"el más seguro",c_freedom:"Libertad",c_freest:"el más libre",c_where:"Dónde tendrás que ir",c_obl:"Obligaciones que quedan",c_later:"Dentro de unos años",c_hidden:"Oculto",c_open:"Abrir el mapa completo",best:"mejor",
  sim_h:"Decide algo y |avanza en el tiempo|.",sim_p:"Cuenta qué quieres crear o decidir. La simulación se adapta a tu caso: un centro de estética no es una clínica, y un examen de bachillerato no es un examen de la universidad.",
  sim_what:"¿Qué quieres crear o decidir?",sim_what_ph:"P. ej.: abrir un centro de estética",sim_det:"Detalles que lo cambian todo",sim_det_ph:"P. ej.: soy esteticista desde hace 5 años y quiero abrir en Braga con una socia y 8.000 €. O: estoy en el último curso, quiero Medicina y tengo un 17,2 de media.",
- sim_go:"Empezar la simulación",sim_loading:"Preparando…",sim_note:"Cada paso usa tu serviço de IA; la primera vez pide permiso. Es una simulación: sirve para pensar, no para decidir solo(a).",sim_guided:"¿No sabes por dónde empezar? Prueba la vida guiada, con preguntas.",
- sim_off:"El simulador usa serviço de IA para crear consecuencias a medida de tu escenario y solo funciona cuando abres LifeLab dentro de serviço de IA. Las demás secciones funcionan aquí igualmente.",
+ sim_go:"Empezar la simulación",sim_loading:"Preparando…",sim_note:"Cada paso usa tu Claude; la primera vez pide permiso. Es una simulación: sirve para pensar, no para decidir solo(a).",sim_guided:"¿No sabes por dónde empezar? Prueba la vida guiada, con preguntas.",
+ sim_off:"El simulador usa Claude para crear consecuencias a medida de tu escenario y solo funciona cuando abres LifeLab dentro de Claude. Las demás secciones funcionan aquí igualmente.",
  sim_start_msg:"Montando el punto de partida…",sim_step_msg:"Avanzando {j} en el tiempo… puede tardar unos segundos.",
  sim_now:"¿Qué haces ahora?",sim_end:"Esta historia ha llegado a un final natural. ¿Quieres seguir?",sim_own:"O escribe tu propia decisión",sim_own_ph:"P. ej.: contrato a una enfermera para los tratamientos con inyectables",sim_jump:"¿Cuánto tiempo pasa?",sim_adv:"Avanzar {j}",
  sim_undo:"Deshacer el último paso",sim_new:"Nueva simulación",sim_cmp:"Comparar caminos",sim_whatif:"¿Y si hubiera decidido otra cosa aquí?",sim_onde:"Dónde tramitarlo en la vida real",sim_surprise:"Imprevisto",steps_n:"pasos",path:"Camino",
@@ -1219,9 +1297,9 @@ en:["Open a beauty salon","Open a psychology practice","Not studying for a maths
 es:["Abrir un centro de estética","Abrir una consulta de psicología","No estudiar para el examen de Matemáticas en el último curso de bachillerato","No estudiar para un examen en la universidad","Dejar la carrera para trabajar","Irme de casa de mis padres","Aceptar un trabajo en el extranjero","Crear una app con un amigo"]};
 const JUMPS=[["1 semana","1 week","1 semana"],["1 mês","1 month","1 mes"],["3 meses","3 months","3 meses"],["6 meses","6 months","6 meses"],["1 ano","1 year","1 año"],["5 anos","5 years","5 años"]];
 const SERRS={
-pt:{not_granted:"Não autorizaste o serviço de IA nesta página. A simulação precisa dele; o resto do LifeLab funciona na mesma.",sampling_disabled:"O serviço de IA não está disponível nesta conta.",rate_limited:"Muitos pedidos seguidos. Espera um bocadinho e tenta outra vez.",session_expired:"Inicia sessão outra vez no serviço de IA e tenta de novo.",refused:"Este pedido não foi aceite. Reformula e tenta outra vez.",invalid_json:"A resposta veio incompleta. Tenta outra vez.",empty_completion:"A resposta veio vazia. Tenta outra vez ou simplifica.",prompt_too_large:"A história ficou longa demais. Começa um novo caminho a partir de um ponto anterior.",other:"Houve uma falha de ligação. Tenta outra vez."},
-en:{not_granted:"You didn't allow serviço de IA on this page. The simulation needs it; the rest of LifeLab still works.",sampling_disabled:"serviço de IA isn't available on this account.",rate_limited:"Too many requests in a row. Wait a moment and try again.",session_expired:"Sign in to serviço de IA again and retry.",refused:"This request wasn't accepted. Rephrase it and try again.",invalid_json:"The answer came back incomplete. Try again.",empty_completion:"The answer came back empty. Try again or simplify.",prompt_too_large:"The story got too long. Start a new path from an earlier point.",other:"There was a connection problem. Try again."},
-es:{not_granted:"No has autorizado a serviço de IA en esta página. La simulación lo necesita; el resto de LifeLab funciona igualmente.",sampling_disabled:"serviço de IA no está disponible en esta cuenta.",rate_limited:"Demasiadas peticiones seguidas. Espera un momento y vuelve a intentarlo.",session_expired:"Vuelve a iniciar sesión en serviço de IA e inténtalo de nuevo.",refused:"Esta petición no se aceptó. Reformúlala y vuelve a intentarlo.",invalid_json:"La respuesta llegó incompleta. Vuelve a intentarlo.",empty_completion:"La respuesta llegó vacía. Vuelve a intentarlo o simplifica.",prompt_too_large:"La historia se ha alargado demasiado. Empieza un camino nuevo desde un punto anterior.",other:"Ha habido un fallo de conexión. Vuelve a intentarlo."}};
+pt:{not_granted:"Não autorizaste o Claude nesta página. A simulação precisa dele; o resto do LifeLab funciona na mesma.",sampling_disabled:"O Claude não está disponível nesta conta.",rate_limited:"Muitos pedidos seguidos. Espera um bocadinho e tenta outra vez.",session_expired:"Inicia sessão outra vez no Claude e tenta de novo.",refused:"Este pedido não foi aceite. Reformula e tenta outra vez.",invalid_json:"A resposta veio incompleta. Tenta outra vez.",empty_completion:"A resposta veio vazia. Tenta outra vez ou simplifica.",prompt_too_large:"A história ficou longa demais. Começa um novo caminho a partir de um ponto anterior.",other:"Houve uma falha de ligação. Tenta outra vez."},
+en:{not_granted:"You didn't allow Claude on this page. The simulation needs it; the rest of LifeLab still works.",sampling_disabled:"Claude isn't available on this account.",rate_limited:"Too many requests in a row. Wait a moment and try again.",session_expired:"Sign in to Claude again and retry.",refused:"This request wasn't accepted. Rephrase it and try again.",invalid_json:"The answer came back incomplete. Try again.",empty_completion:"The answer came back empty. Try again or simplify.",prompt_too_large:"The story got too long. Start a new path from an earlier point.",other:"There was a connection problem. Try again."},
+es:{not_granted:"No has autorizado a Claude en esta página. La simulación lo necesita; el resto de LifeLab funciona igualmente.",sampling_disabled:"Claude no está disponible en esta cuenta.",rate_limited:"Demasiadas peticiones seguidas. Espera un momento y vuelve a intentarlo.",session_expired:"Vuelve a iniciar sesión en Claude e inténtalo de nuevo.",refused:"Esta petición no se aceptó. Reformúlala y vuelve a intentarlo.",invalid_json:"La respuesta llegó incompleta. Vuelve a intentarlo.",empty_completion:"La respuesta llegó vacía. Vuelve a intentarlo o simplifica.",prompt_too_large:"La historia se ha alargado demasiado. Empieza un camino nuevo desde un punto anterior.",other:"Ha habido un fallo de conexión. Vuelve a intentarlo."}};
 const LANGDIR={
 pt:"Escreve em português europeu correto, segundo o Acordo Ortográfico de 1990, sem erros ortográficos e sem formas do português do Brasil (ex.: \"ecrã\", \"equipa\", \"telemóvel\", \"autocarro\", \"receção\"). Trata a pessoa por \"tu\".",
 en:"Write ALL text values in clear, correct British English, addressing the person as \"you\". Keep official Portuguese names of offices, documents and programmes, adding a short English explanation in brackets the first time (e.g. \"Finanças (Tax Office)\", \"NIF (tax number)\").",
@@ -1532,6 +1610,7 @@ function tripPanel(pl){
 function vPlanear(){
   if(U.goal&&GI[U.goal])return vPlan();
   return `${hereCard("m-only")}<section class="sec-h"><span class="kicker">${G.length} · ${u("all_dest")}</span><h2>${hl(u("plan_h"))}</h2><p>${u("plan_p")}</p></section>
+  <div class="diff"><div class="on"><b>${icon("planear")} ${u("tab_planear")}</b><span>${u("diff_plan")}</span></div><div><b>${icon("simular")} ${u("tab_simular")}</b><span>${u("diff_sim")}</span></div></div>
   <div class="lines">${G.map(g=>{const pl=plan(g.id);return `<button class="line-card" data-goal="${g.id}" style="--c:var(${g.c})">
    <span class="lc-top"><span class="lb">${gIcon(g.id)}</span><span class="meta">${pl.all.length} ${u("stops")} · ~${durTxt(pl.weeks)}${devIds(pl).length?` · <em>${devIds(pl).length} ${u("alt_tag")}</em>`:""}</span></span>
    <b>${L(g.t)}</b><small>${L(g.sub)}</small>
@@ -1548,12 +1627,12 @@ function vPlan(){
   <div class="kpis m-only">${kpis(pl,doneN)}</div>
   <div class="m-only">${forkBox(g,pl)}</div>
   <div class="map">${phases}<div class="end-st"><span class="dot"></span><b>${u("arrive")}</b><span>${u("arrive_at",{n:Math.floor(P.age+pl.weeks/52)})}${pl.monthly?" · "+u("then_month",{v:eur(pl.monthly)}):""}</span></div></div>
-  <div class="m-only">${numsBox(g.id)}</div>
-  ${futureSection(g.id)}
+  <div class="m-only">${calcBox(g.id)}</div>
+  ${guideTmCta(g.id)}
   <section class="after"><h3>${u("after_h")}</h3><div class="fut">${pl.meta.fut.map(([w,t])=>`<div><span class="when">${esc(w)}</span><p>${esc(t)}</p></div>`).join("")}</div>
    <div><div class="lbl">${u("obligations")}</div><div class="obl">${pl.meta.obrig.map(o=>`<span>${esc(o)}</span>`).join("")}</div></div>
    <div class="row-btns"><button class="btn primary" data-simgoal="${g.id}">${u("sim_this")}</button><button class="btn" data-addcmp="${g.id}">${u("cmp_this")}</button></div></section>
-  </div><aside class="col-side"><div class="sticky"><div class="kpis d-only">${kpis(pl,doneN)}</div><div class="d-only">${forkBox(g,pl)}</div><div class="d-only">${numsBox(g.id)}</div>${tripPanel(pl)}</div></aside></div>`;
+  </div><aside class="col-side"><div class="sticky"><div class="kpis d-only">${kpis(pl,doneN)}</div><div class="d-only">${forkBox(g,pl)}</div><div class="d-only">${calcBox(g.id)}</div>${tripPanel(pl)}</div></aside></div>`;
 }
 function kpis(pl,doneN){return `<div class="kpi"><b>${doneN}/${pl.all.length}</b><span>${u("stops_done")}</span></div><div class="kpi"><b>${durTxt(pl.weeks)}</b><span>${u("one_by_one")}</span></div><div class="kpi"><b>${eur(pl.cost)}</b><span>${u("one_off")}</span></div><div class="kpi"><b>${pl.ents.length}</b><span>${u("entities")}</span></div>`}
 function forkBox(g,pl){return g.forks.length?`<section class="forks">${g.forks.map(fk=>`<div class="fork"><span class="q">${L(fk.q)}</span><div class="seg">${fk.o.map(([v,t])=>`<button data-fork="${fk.id}" data-v="${v}" aria-pressed="${pl.f[fk.id]===v}">${L(t)}</button>`).join("")}</div></div>`).join("")}<p class="hint">${u("fork_hint")} <button class="linkbtn" data-sheet="1">${u("edit_profile")}</button></p></section>`:""}
@@ -1677,8 +1756,8 @@ const brName=b=>typeof b.nome==="number"?u("path")+" "+b.nome:b.nome;
 function ondeHtml(o,ti){if(!o.length)return "";const kk=k=>"sim-"+SIM.active+"-"+ti+"-"+k;
   return `<details class="onde" ${o.some((x,k)=>HELP[kk(k)])?"open":""}><summary>${u("sim_onde")} (${o.length})</summary><div class="ob">${o.map((x,k)=>`<div class="ondei"><b>${esc(x.entidade)}</b><span>${esc(x.o_que)}</span>${x.passos.length?`<ol class="how">${x.passos.map(p=>`<li>${esc(p)}</li>`).join("")}</ol>`:""}${x.link?`<a href="${x.link}" target="_blank" rel="noopener">${x.link.replace("https://","").replace(/\/$/,"")} ↗</a>`:""}${helpBlock(kk(k),{t:x.o_que,ent:x.entidade,how:x.passos,ctx:"Simulação: "+SIM.ideia})}</div>`).join("")}</div></details>`}
 const busyBox=()=>`<section class="busy"><span class="pulse" aria-hidden="true"></span><p>${esc(BUSY.msg)}</p><button class="btn sm" id="simStop">${u("stop")}</button></section>`;
-function vSimular(){
-  if(sampleState==="off")return `<p class="note">${tx("Demonstração independente: experimenta a vida guiada abaixo. A simulação livre com IA está em preparação.","Standalone demo: try the guided life below. Free-form AI simulation is being prepared.","Demostración independiente: prueba la vida guiada. La simulación libre con IA está en preparación.")}</p>`+vViver();
+function vSimularAI(){
+  if(sampleState==="off")return `<section class="sec-h"><h2>${hl(u("sim_h"))}</h2><p>${u("sim_off")}</p></section><button class="linkbtn" data-tab="viver">${u("sim_guided")}</button>`;
   if(BUSY&&!SIM)return busyBox();
   return SIM?vSimRun():vSimSetup();
 }
@@ -1852,7 +1931,7 @@ pt:{did_q:"O que fizeste?",did_rec:"Como recomendado",did_alt:"De outra forma",d
  dev_h:"Onde saíste do caminho",dev_none:"Por agora segues o caminho recomendado. Em cada paragem, marca o que fizeste de facto: como recomendado, de outra forma ou se a saltaste.",dev_risk:"O que pode acontecer",dev_fix:"Como voltar ao caminho",dev_when:"Quando se nota",dev_generic:"Saltar este passo costuma voltar mais tarde, normalmente com mais custo ou atraso. Confirma com a entidade.",
  nums_h:"Os teus números",nums_inv:"Dinheiro que pões (€)",nums_hrs:"Horas por semana",nums_note:"Outra coisa que fizeste ou vais fazer",nums_note_ph:"Ex.: já tenho 3 clientes; arrendei um espaço sem ver a licença",
  fut_h:"O teu futuro, em ramos",fut_p:"Compara o caminho recomendado com o que fizeste de facto. Cada desvio, valor ou atalho muda o que vem a seguir.",fut_go:"Simular o meu futuro",fut_again:"Voltar a simular",fut_stale:"Mudaste coisas desde a última simulação.",fut_msg:"A projetar os dois futuros…",
- fut_rec:"Recomendado",fut_you:"O teu caminho",fut_today:"Hoje",fut_money:"Dinheiro",fut_prog:"Progresso",fut_risk:"Risco",fut_well:"Bem-estar",fut_offline:"As notas dos desvios aparecem abaixo. A projeção livre com IA ainda não está disponível nesta demonstração.",
+ fut_rec:"Recomendado",fut_you:"O teu caminho",fut_today:"Hoje",fut_money:"Dinheiro",fut_prog:"Progresso",fut_risk:"Risco",fut_well:"Bem-estar",fut_offline:"Os riscos de cada desvio já aparecem abaixo. A projeção no tempo usa o Claude e só funciona quando abres o LifeLab dentro do Claude.",
  fut_dev:"O que os teus desvios provocam",sev_baixa:"impacto baixo",sev_media:"impacto médio",sev_alta:"impacto alto",
  wi_h:"E se…?",wi_ph:"Ex.: e se investir 15.000 € em vez de 5.000 €? E se não contratar contabilista?",wi_go:"Criar este ramo",wi_msg:"A criar o ramo…",wi_rm:"Remover",
  h1:"3 meses",h2:"1 ano",h3:"3 anos",br_map:"Mapa dos teus caminhos"},
@@ -1861,7 +1940,7 @@ en:{did_q:"What did you do?",did_rec:"As recommended",did_alt:"Differently",did_
  dev_h:"Where you left the route",dev_none:"So far you're on the recommended route. At each stop, mark what you actually did: as recommended, differently, or skipped.",dev_risk:"What can happen",dev_fix:"How to get back on track",dev_when:"When it shows",dev_generic:"Skipping this step usually comes back later, often costing more time or money. Check with the office.",
  nums_h:"Your numbers",nums_inv:"Money you put in (€)",nums_hrs:"Hours per week",nums_note:"Anything else you did or will do",nums_note_ph:"E.g. I already have 3 clients; I rented a space without checking the licence",
  fut_h:"Your future, branching",fut_p:"Compare the recommended route with what you actually did. Every detour, amount or shortcut changes what comes next.",fut_go:"Simulate my future",fut_again:"Simulate again",fut_stale:"You've changed things since the last simulation.",fut_msg:"Projecting both futures…",
- fut_rec:"Recommended",fut_you:"Your route",fut_today:"Today",fut_money:"Money",fut_prog:"Progress",fut_risk:"Risk",fut_well:"Wellbeing",fut_offline:"Notes on detours appear below. Free-form AI projections are not available in this demo.",
+ fut_rec:"Recommended",fut_you:"Your route",fut_today:"Today",fut_money:"Money",fut_prog:"Progress",fut_risk:"Risk",fut_well:"Wellbeing",fut_offline:"The risks of each detour are shown below. The projection over time uses Claude and only works when you open LifeLab inside Claude.",
  fut_dev:"What your detours cause",sev_baixa:"low impact",sev_media:"medium impact",sev_alta:"high impact",
  wi_h:"What if…?",wi_ph:"E.g. what if I invest €15,000 instead of €5,000? What if I don't hire an accountant?",wi_go:"Create this branch",wi_msg:"Creating the branch…",wi_rm:"Remove",
  h1:"3 months",h2:"1 year",h3:"3 years",br_map:"Map of your paths"},
@@ -1870,7 +1949,7 @@ es:{did_q:"¿Qué hiciste?",did_rec:"Como se recomienda",did_alt:"De otra forma"
  dev_h:"Dónde saliste del camino",dev_none:"Por ahora sigues el camino recomendado. En cada parada, marca lo que hiciste de verdad: como se recomienda, de otra forma o si te la saltaste.",dev_risk:"Qué puede pasar",dev_fix:"Cómo volver al camino",dev_when:"Cuándo se nota",dev_generic:"Saltarse este paso suele volver más adelante, normalmente con más coste o retraso. Confírmalo con la entidad.",
  nums_h:"Tus números",nums_inv:"Dinero que pones (€)",nums_hrs:"Horas por semana",nums_note:"Algo más que hiciste o harás",nums_note_ph:"P. ej.: ya tengo 3 clientes; alquilé un local sin mirar la licencia",
  fut_h:"Tu futuro, en ramas",fut_p:"Compara el camino recomendado con lo que hiciste de verdad. Cada desvío, importe o atajo cambia lo que viene después.",fut_go:"Simular mi futuro",fut_again:"Volver a simular",fut_stale:"Has cambiado cosas desde la última simulación.",fut_msg:"Proyectando los dos futuros…",
- fut_rec:"Recomendado",fut_you:"Tu camino",fut_today:"Hoy",fut_money:"Dinero",fut_prog:"Progreso",fut_risk:"Riesgo",fut_well:"Bienestar",fut_offline:"Los riesgos de cada desvío ya aparecen abajo. La proyección en el tiempo usa serviço de IA y solo funciona cuando abres LifeLab dentro de serviço de IA.",
+ fut_rec:"Recomendado",fut_you:"Tu camino",fut_today:"Hoy",fut_money:"Dinero",fut_prog:"Progreso",fut_risk:"Riesgo",fut_well:"Bienestar",fut_offline:"Los riesgos de cada desvío ya aparecen abajo. La proyección en el tiempo usa Claude y solo funciona cuando abres LifeLab dentro de Claude.",
  fut_dev:"Lo que provocan tus desvíos",sev_baixa:"impacto bajo",sev_media:"impacto medio",sev_alta:"impacto alto",
  wi_h:"¿Y si…?",wi_ph:"P. ej.: ¿y si invierto 15.000 € en lugar de 5.000 €? ¿Y si no contrato contable?",wi_go:"Crear esta rama",wi_msg:"Creando la rama…",wi_rm:"Quitar",
  h1:"3 meses",h2:"1 año",h3:"3 años",br_map:"Mapa de tus caminos"}};
@@ -1900,7 +1979,7 @@ function didBlock(id){
    ${k==="alt"?`<div class="did-alt"><textarea id="alt-${id}" data-alttxt="${id}" placeholder="${esc(u("did_alt_ph"))}">${esc(a.txt||"")}</textarea><label class="valf"><span>${u("did_val")}</span><input type="number" inputmode="decimal" min="0" step="50" id="val-${id}" data-altval="${id}" value="${a.val!=null?a.val:""}"></label></div>`:""}</div>`;
 }
 
-// desvios determinísticos (sem serviço de IA)
+// desvios determinísticos (sem Claude)
 function devList(pl,fut){
   const ids=devIds(pl);
   if(!ids.length)return `<p class="note">${u("dev_none")}</p>`;
@@ -2211,6 +2290,462 @@ const VT={"Ter um filho":{familia:1,tempo:-1,liberdade:-1},"Adotar":{familia:1,t
  "Recibos verdes":{liberdade:1,seguranca:-1},"Contrato numa empresa":{seguranca:1,estabilidade:1}};
 function valFx(fx,t){const e=VT[t];if(!e)return fx;const o=Object.assign({},fx);delete o.b;delete o.r;const w=[6,4,2];let b=0;P.vals.forEach((v,i)=>{if(e[v])b+=e[v]*w[i]});if(b)o.b=b;return o}
 
+// ================= Máquina do tempo (funciona sem IA) =================
+// Cada objetivo vira uma linha do tempo, mês a mês. Os passos do Guia são as decisões.
+// Ramo 0 = o teu caminho (ligado ao que marcas no Guia). Mudar uma decisão passada cria um ramo novo.
+let TM_H=36; const NOW_M=10; // novembro (0 = janeiro)
+const IAS26=537.13, SMN26=920, IRSJ_LIM=29542.15, DED_ESP=4587.09, MIN_EX=12880;
+const IRS_BR=[[8342,.125],[12587,.157],[17838,.212],[23089,.241],[29397,.311],[43090,.349],[46566,.431],[86634,.446],[Infinity,.48]];
+function irsTax(col){let t=0,prev=0;for(const [lim,r] of IRS_BR){if(col<=prev)break;t+=(Math.min(col,lim)-prev)*r;prev=lim}return t}
+function irsAnnual(bruto,jy){ // bruto anual cat. A; jy = ano do IRS Jovem (0 = não tem)
+  if(bruto<=MIN_EX)return 0;
+  const pct=!jy?0:jy===1?1:jy<=4?.75:jy<=7?.5:jy<=10?.25:0;
+  const isento=Math.min(bruto*pct,IRSJ_LIM),tribut=bruto-isento;
+  const ss=tribut*.11,col=Math.max(0,tribut-Math.max(DED_ESP,ss));
+  return Math.max(0,Math.round(irsTax(col)))}
+function netMonthly(brutoM,jy){const a=brutoM*14,ss=a*.11,irs=irsAnnual(a,jy);return {ss:ss/14,irs:irs/14,net:(a-ss-irs)/14}}
+
+const TF={ // números de cada objetivo: [chave, rótulo pt/en/es, valor por omissão, passo]
+ base:[["rend",["Rendimento líquido por mês (€)","Net income per month (€)","Ingresos netos al mes (€)"],p=>({empregado:1100,independente:1000,estudante:0,desempregado:0,reformado:650}[p.work]||0),50],
+       ["custo",["Despesas fixas por mês (€)","Fixed costs per month (€)","Gastos fijos al mes (€)"],p=>p.casa==="pais"?250:750,50],
+       ["inv",["Dinheiro que pões no início (€)","Money you put in at the start (€)","Dinero que pones al principio (€)"],()=>0,100],
+       ["hrs",["Horas por semana para isto","Hours per week for this","Horas por semana para esto"],()=>5,1]],
+ negocio:[["fat",["Faturação por mês quando arrancar (€)","Monthly turnover once running (€)","Facturación al mes cuando arranque (€)"],()=>1500,100],
+          ["ramp",["Meses até chegar a essa faturação","Months to reach that turnover","Meses hasta llegar a esa facturación"],()=>6,1],
+          ["cneg",["Custos do negócio por mês (€)","Business costs per month (€)","Costes del negocio al mes (€)"],()=>300,50]],
+ emprego:[["bruto",["Salário bruto por mês (€)","Gross salary per month (€)","Salario bruto al mes (€)"],()=>1100,50]],
+ carreira:[["bruto",["Salário bruto na nova área (€)","Gross salary in the new field (€)","Salario bruto en la nueva área (€)"],()=>1300,50],["perda",["Rendimento que perdes por mês enquanto te formas (€)","Income you lose per month while training (€)","Ingresos que pierdes al mes mientras te formas (€)"],()=>0,50]],
+ casa:[["renda",["Renda ou prestação por mês (€)","Rent or mortgage per month (€)","Alquiler o cuota al mes (€)"],p=>p.reg==="lis"?1000:700,25]],
+ sair:[["renda",["Renda (ou a tua parte) por mês (€)","Rent (or your share) per month (€)","Alquiler (o tu parte) al mes (€)"],p=>p.reg==="lis"?700:450,25]],
+ filho:[["lic",["Dias de licença parental (120 ou 150)","Days of parental leave (120 or 150)","Días de permiso parental (120 o 150)"],()=>120,30],["mes",["Daqui a quantos meses nasce","How many months until the birth","Dentro de cuántos meses nace"],()=>8,1],["cfilho",["Custos com a criança por mês (€)","Child costs per month (€)","Gastos del niño al mes (€)"],()=>350,25],["bruto",["Teu salário bruto por mês (€)","Your gross salary per month (€)","Tu salario bruto al mes (€)"],()=>1200,50]],
+ estudar:[["propina",["Propina por ano (€)","Tuition per year (€)","Matrícula por año (€)"],()=>710,10],["perda",["Rendimento que perdes por mês a estudar (€)","Income you lose per month while studying (€)","Ingresos que pierdes al mes estudiando (€)"],()=>0,50]],
+ mudar:[["renda",["Renda por mês (€)","Rent per month (€)","Alquiler al mes (€)"],p=>p.reg==="lis"?1000:700,25]],
+ emigrar:[["rend2",["Rendimento líquido no novo país (€)","Net income in the new country (€)","Ingresos netos en el nuevo país (€)"],()=>2000,100],["custo2",["Despesas por mês no novo país (€)","Costs per month in the new country (€)","Gastos al mes en el nuevo país (€)"],()=>1400,50]],
+ reforma:[["poup",["Quanto poupas por mês para a reforma (€)","How much you save per month for retirement (€)","Cuánto ahorras al mes para la jubilación (€)"],()=>100,25]]
+};
+const REND_NOW=["Rendimento líquido atual por mês, antes disto (€)","Current net income per month, before this (€)","Ingresos netos actuales al mes, antes de esto (€)"];
+const tfOf=gid=>TF.base.map(x=>x[0]==="rend"&&["emprego","carreira","emigrar"].includes(gid)?[x[0],REND_NOW,x[2],x[3]]:x).concat(TF[gid]||[]);
+const mName=m=>{const d=new Date(2026,NOW_M+m,1);try{return d.toLocaleDateString(LOC[LANG],{month:"short",year:"numeric"})}catch(e){return (d.getMonth()+1)+"/"+d.getFullYear()}};
+const isApril=m=>(NOW_M+m)%12===3;
+
+let TMS=load("ll5_tm")||{gid:null,by:{}};
+let TPLAY=null;
+const JUMPS_M=[1,2,3,4,6,9,12,18,24,36,48,60],HORIZ=[6,12,24,36,60,120];
+if(!TMS.jump)TMS.jump=1;if(!TMS.hz)TMS.hz=36;TM_H=TMS.hz;
+const jTxt=n=>n%12===0?(n/12)+" "+u(n===12?"tm_y1":"tm_yN"):n+" "+u(n===1?"tm_m1":"tm_mN");
+function tmJump(dir){const i=JUMPS_M.indexOf(TMS.jump),j=Math.max(0,Math.min(JUMPS_M.length-1,(i<0?0:i)+dir));TMS.jump=JUMPS_M[j];tmSave();render()}
+function tmHz(dir){const i=HORIZ.indexOf(TMS.hz),j=Math.max(0,Math.min(HORIZ.length-1,(i<0?3:i)+dir));TMS.hz=HORIZ[j];TM_H=TMS.hz;Object.values(TMS.by).forEach(s=>{if(s.cur>TM_H)s.cur=TM_H});tmSave();render()}
+function tmSave(){store("ll5_tm",TMS)}
+function tmState(gid){
+  let s=TMS.by[gid];
+  if(!s){s=TMS.by[gid]={cur:0,act:0,br:[{name:"",live:1,from:0}],hist:[],fut:[]};}
+  return s}
+// dados efetivos de um ramo
+function brData(gid,b){
+  if(b.live){const n=Object.assign({},U.nums[gid]||{});return {forks:forksOf(gid),acts:U.acts||{},n}}
+  return {forks:Object.assign({},forksOf(gid),b.forks||{}),acts:b.acts||{},n:b.n||{}}}
+function numOf(gid,d,k){const f=tfOf(gid).find(x=>x[0]===k);const v=d.n[k];return v!=null&&v!==""?Number(v):(f?f[2](P):0)}
+function tmSnap(gid){const s=tmState(gid);return JSON.stringify({br:s.br,act:s.act,cur:s.cur,acts:U.acts,forks:U.forks[gid]||{},nums:U.nums[gid]||{}})}
+function tmPush(gid){const s=tmState(gid);s.hist.push(tmSnap(gid));if(s.hist.length>40)s.hist.shift();s.fut=[]}
+function tmRestore(gid,j){const s=tmState(gid),o=JSON.parse(j);s.br=o.br;s.act=o.act;s.cur=o.cur;U.acts=o.acts;U.forks[gid]=o.forks;U.nums[gid]=o.nums}
+
+// motor: calcula mês a mês
+function tmRun(gid,d,recOnly){
+  const g=GI[gid],pl=plan(gid,d.forks),f=d.forks,meta=pl.meta,n=k=>numOf(gid,d,k);
+  const steps=[];let wk=0;
+  pl.all.forEach(id=>{const s=S[id];if(isHave(id)){steps.push({id,m:0,k:"have"});return}
+    const a=recOnly?{k:"rec"}:(d.acts[id]||{}),k=a.k||"rec";
+    const m=Math.min(TM_H,Math.floor(wk/4.33));
+    const mid=c=>Array.isArray(c)?(c[0]+c[1])/2:(c||0);
+    steps.push({id,m,k,cost:k==="skip"?0:k==="alt"&&a.val!=null?Number(a.val):mid(s.c),cm:k==="skip"?0:(s.cm||0),txt:a.txt||""});
+    if(k!=="skip")wk+=s.w||0});
+  const lastStep=steps.length?Math.max(...steps.map(x=>x.m)):0;
+  const stepM=id=>{const x=steps.find(s=>s.id===id);return x?x.m:null};
+  const ev=[],money=[],risk=[],prog=[],inc=[];
+  let cash=P.pou-n("inv"),r0=meta.risco*10,rk=r0,cmAcc=0,flags={};
+  const push=(m,t,kind)=>ev.push({m,t,kind:kind||"info"});
+  if(n("inv"))push(0,u("tm_ev_inv",{v:eur(n("inv"))}),"money");
+  for(let m=0;m<=TM_H;m++){
+    let inn=n("rend"),out=n("custo");
+    steps.filter(s=>s.m===m&&s.k!=="have").forEach(s=>{const st=stp(s.id);
+      if(s.k==="skip"){rk+=15;push(m,u("tm_ev_skip",{t:st.t}),"bad");push(Math.min(TM_H,m+3),st.x?u("tm_ev_skipx",{t:st.t,x:st.x}):u("tm_ev_skipg",{t:st.t}),"bad")}
+      else{out+=s.cost;cmAcc+=s.cm;if(s.k==="alt"){rk+=5;push(m,u("tm_ev_alt",{t:st.t})+(s.txt?" “"+s.txt.slice(0,80)+"”":"")+(s.cost?" · "+eur(s.cost):""),"alt")}
+        else push(m,u("tm_ev_done",{t:st.t})+(s.cost?" · "+eur(s.cost):""),"ok");if(st.i)push(m,st.i,"info")}});
+    out+=cmAcc;
+    // regras de cada objetivo
+    if(gid==="negocio"){const st=Math.max(stepM("atividade")??stepM("empresa")??lastStep,0);
+      if(f.ritmo==="total"&&P.work==="empregado"&&m>=(stepM("saida")??0))inn-=n("rend");
+      if(m>=st){const rec=n("fat")*Math.min(1,(m-st+1)/Math.max(1,n("ramp")));inn+=rec;out+=n("cneg");
+        if(f.forma==="eni"){if(m-st>=12){const ss=rec*.7*.214;out+=ss;if(!flags.ss){flags.ss=1;push(m,u("tm_ev_ssend",{v:eur(ss)}),"money")}}
+          if(!flags.iva&&rec*12>15000){flags.iva=1;push(m,u("tm_ev_iva"),"warn")}}
+        else if(m-st===12)push(m,u("tm_ev_irc"),"info")}
+      if(m===st)push(m,u("tm_ev_open"),"ok")}
+    if(gid==="emprego"||gid==="carreira"){const st=gid==="emprego"?(stepM("contrato")??stepM("atividade")??lastStep):lastStep;const jy=P.age<=35?Math.floor((m-st)/12)+1:0;
+      if(gid==="carreira"&&m<st)inn-=n("perda");
+      if(m>=st){const nm=netMonthly(n("bruto"),m>=st?jy:0);inn+=nm.net-n("rend");
+        if(m===st)push(m,u("tm_ev_job",{v:eur(nm.net)})+(jy?" "+u("tm_ev_irsj"):""),"money");
+        if(gid==="emprego"&&m===st+3)push(m,u("tm_ev_trial"),"info")}}
+    if(gid==="casa"||gid==="sair"||gid==="mudar"){const st=stepM("arrendar")??stepM("escritura")??lastStep;
+      if(m>=st){out+=n("renda");if(m===st){const tot=Math.max(1,n("rend")),pc=Math.round(n("renda")/tot*100);push(m,u("tm_ev_rent",{v:eur(n("renda")),p:pc}),pc>35?"warn":"ok")}}}
+    if(gid==="filho"){const b=n("mes");
+      if(m>=b){out+=n("cfilho");if(m===b)push(m,u("tm_ev_birth"),"ok")}
+      const lm=Math.round(n("lic")/30);if(m>=b&&m<b+lm&&n("lic")>=150){inn-=n("bruto")*.2}
+      if(m===b+lm)push(m,u("tm_ev_leave"),"info")}
+    if(gid==="estudar"){const st=lastStep;if(m>=st){out+=n("propina")/12;inn-=n("perda");if(m===st)push(m,u("tm_ev_study",{v:eur(n("propina"))}),"money")}}
+    if(gid==="emigrar"){const st=lastStep;if(m>=st){inn+=n("rend2")-n("rend");out+=n("custo2")-n("custo");if(m===st)push(m,u("tm_ev_move"),"ok")}}
+    if(gid==="reforma"){out+=n("poup");if(!flags.p&&m===12){flags.p=1;push(m,u("tm_ev_pens",{v:eur(n("poup")*12)}),"money")}}
+    if(isApril(m)&&(inn>0))push(m,u("tm_ev_irs"),"info");
+    if(m===0)cash+=0;else cash+=inn-out;
+    money.push(Math.round(cash));inc.push(Math.round(inn-out));
+    const done=steps.filter(s=>s.k!=="skip"&&s.m<=m).length;prog.push(Math.round(done/Math.max(1,steps.length)*100));
+    risk.push(Math.max(0,Math.min(100,Math.round(rk))));
+    if(cash<0&&!flags.neg){flags.neg=1;push(m,u("tm_ev_neg"),"bad")}
+  }
+  meta.fut.forEach(([w,t],i)=>{if(gid==="negocio"&&i===0&&f.forma==="eni")return;const s=String(w).toLowerCase(),m=/3 a|3 y|3 añ/.test(s)?36:/1 a|1 y|1 añ|ano|year|año/.test(s)?12:/mes|month/.test(s)?3:24;push(Math.min(TM_H,Math.max(lastStep,m)),t,"later")});
+  ev.sort((a,b)=>a.m-b.m);
+  return {steps,ev,money,risk,prog,inc,lastStep,pl}}
+
+// ---------- vista ----------
+const BCOL=["var(--ink)","var(--l-blue)","var(--l-amber)","var(--l-pink)","var(--l-violet)","var(--ok)"];
+const bName=(b,i)=>i===0?u("tm_yours"):(b.name||u("tm_branch")+" "+String.fromCharCode(65+i));
+function tmChart(gid,s,runs,rec){
+  const W=680,H=230,pl=66,pr=14,pt=16,pb=30,all=[...rec.money,...runs.flatMap(r=>r.money)];
+  const mn=Math.min(0,...all),mx=Math.max(1,...all),rg=mx-mn||1;
+  const x=m=>pl+(W-pl-pr)*m/TM_H,y=v=>pt+(H-pt-pb)*(1-(v-mn)/rg);
+  const line=(arr,from)=>arr.map((v,m)=>m<from?null:`${x(m).toFixed(1)},${y(v).toFixed(1)}`).filter(Boolean).join(" ");
+  const stp6=TM_H<=12?2:TM_H<=24?4:TM_H<=36?6:TM_H<=60?12:24,ticks=[];for(let m=0;m<=TM_H;m+=stp6)ticks.push(m);
+  const act=runs[s.act],cur=s.cur;
+  const marks=act.steps.filter(st=>st.k!=="have").map(st=>`<circle cx="${x(st.m)}" cy="${y(act.money[st.m])}" r="4.5" class="mk ${st.k}"/>`).join("");
+  const yt=[mn,mn+rg/2,mx].map(v=>`<line x1="${pl}" x2="${W-pr}" y1="${y(v)}" y2="${y(v)}" class="gl"/><text x="${pl-6}" y="${y(v)+4}" text-anchor="end" class="ax">${esc(eur(v))}</text>`).join("");
+  return `<div class="chart-wrap tmc"><svg id="tmChart" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(u("tm_chart"))}">
+   ${yt}${mn<0?`<line x1="${pl}" x2="${W-pr}" y1="${y(0)}" y2="${y(0)}" class="zero"/>`:""}
+   ${ticks.map(m=>`<text x="${x(m)}" y="${H-8}" text-anchor="${m===TM_H?"end":"middle"}" class="ax">${m===0?esc(u("tm_today")):m%12===0?"+"+(m/12)+" "+esc(u(m===12?"tm_y1":"tm_yN")):"+"+m+"m"}</text>`).join("")}
+   <polyline points="${line(rec.money,0)}" fill="none" stroke="var(--c)" stroke-width="2.5" stroke-dasharray="6 6"/>
+   ${runs.map((r,i)=>i===s.act?"":`<polyline points="${line(r.money,s.br[i].from||0)}" fill="none" stroke="${BCOL[i%BCOL.length]}" stroke-width="2.5" opacity=".55"/>`).join("")}
+   <polyline points="${line(act.money,0)}" fill="none" stroke="${BCOL[s.act%BCOL.length]}" stroke-width="3.5"/>
+   ${marks}
+   <line x1="${x(cur)}" x2="${x(cur)}" y1="${pt-4}" y2="${H-pb+4}" class="cur"/><circle cx="${x(cur)}" cy="${y(act.money[cur])}" r="7" class="curd"/>
+   <rect x="${pl}" y="0" width="${W-pl-pr}" height="${H}" fill="transparent" data-tmx="1" style="cursor:pointer"/></svg>
+   <div class="legend"><span><i style="background:var(--c)"></i>${esc(u("fut_rec"))}</span>${runs.map((r,i)=>`<span><i style="background:${BCOL[i%BCOL.length]}"></i>${esc(bName(s.br[i],i))}</span>`).join("")}<span><i class="lk ok"></i>${esc(u("tm_k_rec"))}</span><span><i class="lk alt"></i>${esc(u("tm_k_alt"))}</span><span><i class="lk skip"></i>${esc(u("tm_k_skip"))}</span></div></div>`}
+function tmDecRow(gid,s,run,st,past){
+  const t=stp(st.id),kk=st.k;
+  const b=(k,lab)=>`<button data-tmdec="${st.id}" data-k="${k}" aria-pressed="${kk===k}" class="did-${k}">${lab}</button>`;
+  return `<li class="tmd ${kk}"><span class="tmd-m">${esc(mName(st.m))}</span><div class="tmd-b"><b>${esc(t.t)}</b><span class="ent">${esc(E(t.e))}</span>
+   <div class="seg did-seg sm">${b("rec",u("did_rec"))}${b("alt",u("did_alt"))}${b("skip",u("did_skip"))}</div>
+   ${past?`<button class="linkbtn" data-tmgo="${st.m}">${u("tm_goto")}</button>`:""}<button class="linkbtn" data-tmguide="${st.id}">${u("tm_help")}</button></div></li>`}
+function vTime(){
+  const gid=TMS.gid;
+  if(!gid||!GI[gid])return tmPick();
+  const s=tmState(gid);if(s.act>=s.br.length)s.act=0;
+  const runs=s.br.map(b=>tmRun(gid,brData(gid,b)));
+  const rec=tmRun(gid,brData(gid,s.br[0]),true);
+  const act=runs[s.act],cur=Math.max(0,Math.min(TM_H,s.cur)),g=GI[gid];
+  const fwd=s.prev!=null&&s.prev<cur;
+  const evShow=act.ev.filter(e=>fwd?(e.m>s.prev&&e.m<=cur):e.m===cur);
+  const nextEv=act.ev.filter(e=>e.m>cur).slice(0,3);
+  const past=act.steps.filter(x=>x.k!=="have"&&x.m<=cur),future=act.steps.filter(x=>x.k!=="have"&&x.m>cur);
+  const dl=(a,b,isEur,goodHigh)=>{const d=a-b;if(!d)return"";const good=(d>0)===goodHigh;return `<span class="gd ${good?"good":"bad"}">${d>0?"+":"−"}${isEur?eur(Math.abs(d)):Math.abs(d)}</span>`};
+  const age=P.age+Math.floor(cur/12);
+  const nums=tfOf(gid),d0=brData(gid,s.br[s.act]);
+  return `<div class="tm" style="--c:var(${g.c})">
+  <section class="tm-head"><div><span class="kicker">${u("tm_kicker")}</span><h2>${L(g.t)}</h2><p>${u("tm_p")}</p></div>
+   <div class="row-btns"><button class="btn sm" data-tmpick="1">← ${u("tm_other")}</button><button class="btn sm" data-goal="${gid}">${u("tm_toguide")} →</button></div></section>
+  <section class="tm-ctl" aria-label="${esc(u("tm_ctl"))}">
+   <div class="tm-now"><span class="tm-when">${esc(mName(cur))}</span><span class="tm-age">${cur===0?u("tm_today"):"+"+cur+" "+u(cur===1?"tm_m1":"tm_mN")} · ${age} ${u("years")}</span></div>
+   <div class="tm-btns">
+    <button class="ib" data-tmstep="-99" aria-label="${esc(u("tm_start"))}" title="${esc(u("tm_start"))}">⏮</button>
+    <button class="ib" data-tmstep="${-TMS.jump}" aria-label="${esc(u("tm_back_j",{j:jTxt(TMS.jump)}))}" title="${esc(u("tm_back_j",{j:jTxt(TMS.jump)}))}">◀ ${esc(jTxt(TMS.jump))}</button>
+    <button class="ib play" id="tmPlay" aria-label="${esc(u(TPLAY?"tm_pause":"tm_play"))}">${TPLAY?"❚❚":"▶"}</button>
+    <button class="ib" data-tmstep="${TMS.jump}" aria-label="${esc(u("tm_fwd_j",{j:jTxt(TMS.jump)}))}" title="${esc(u("tm_fwd_j",{j:jTxt(TMS.jump)}))}">${esc(jTxt(TMS.jump))} ▶</button>
+    <button class="ib" data-tmstep="99" aria-label="${esc(u("tm_end"))}" title="${esc(u("tm_end"))}">⏭</button>
+    <span class="tm-sep"></span>
+    <button class="ib" id="tmUndo" ${s.hist.length?"":"disabled"} title="${esc(u("tm_undo"))}">↶</button><button class="ib" id="tmRedo" ${s.fut.length?"":"disabled"} title="${esc(u("tm_redo"))}">↷</button></div>
+   <div class="tm-spins">
+    <div class="spin"><span class="spin-l">${u("tm_jump")}</span><button class="sb" data-tmj="-1" aria-label="${esc(u("tm_less"))}" ${TMS.jump===JUMPS_M[0]?"disabled":""}>▼</button><b>${esc(jTxt(TMS.jump))}</b><button class="sb" data-tmj="1" aria-label="${esc(u("tm_more"))}" ${TMS.jump===JUMPS_M[JUMPS_M.length-1]?"disabled":""}>▲</button></div>
+    <div class="spin"><span class="spin-l">${u("tm_hz")}</span><button class="sb" data-tmh="-1" aria-label="${esc(u("tm_less"))}" ${TMS.hz===HORIZ[0]?"disabled":""}>▼</button><b>${esc(jTxt(TMS.hz))}</b><button class="sb" data-tmh="1" aria-label="${esc(u("tm_more"))}" ${TMS.hz===HORIZ[HORIZ.length-1]?"disabled":""}>▲</button></div>
+    <div class="spin quick">${[1,3,6,12].map(n=>`<button class="qj" data-tmjset="${n}" aria-pressed="${TMS.jump===n}">${esc(jTxt(n))}</button>`).join("")}</div></div>
+   <input type="range" id="tmRange" min="0" max="${TM_H}" step="1" value="${cur}" aria-label="${esc(u("tm_ctl"))}">
+   <p class="note">${u("tm_keys")}</p></section>
+  ${s.flash?`<div class="tm-flash" role="status">${esc(s.flash)}</div>`:""}
+  ${s.br.length>1?`<div class="branches">${s.br.map((b,i)=>`<span class="brc"><button data-tmbr="${i}" aria-pressed="${i===s.act}"><i style="background:${BCOL[i%BCOL.length]}"></i>${esc(bName(b,i))}${i?` · ${u("tm_from")} ${esc(mName(b.from||0))}`:""}</button>${i?`<button class="x" data-tmrm="${i}" aria-label="${esc(u("remove"))}">×</button>`:""}</span>`).join("")}</div>`:""}
+  <div class="split"><div class="col-main">
+   ${tmChart(gid,s,runs,rec)}
+   <section class="tm-gauges">
+    <div class="gauge"><span class="gn">${u("tm_money")}</span><b class="${act.money[cur]<0?"neg":""}">${eur(act.money[cur])}</b>${dl(act.money[cur],rec.money[cur],1,true)}<small>${u("tm_vs_rec")}</small></div>
+    <div class="gauge"><span class="gn">${u("tm_month")}</span><b>${act.inc[cur]>=0?"+":""}${eur(act.inc[cur])}</b><small>${u("tm_month_s")}</small></div>
+    <div class="gauge"><span class="gn">${u("fut_prog")}</span><b>${act.prog[cur]}%</b>${dl(act.prog[cur],rec.prog[cur],0,true)}</div>
+    <div class="gauge"><span class="gn">${u("fut_risk")}</span><b>${act.risk[cur]}</b>${dl(act.risk[cur],rec.risk[cur],0,false)}<small>${u("tm_risk_s")}</small></div></section>
+   <section class="tm-now-ev"><h3>${u("tm_happened",{m:esc(mName(cur))})}</h3>${evShow.length?`<ul class="tm-ev">${evShow.map(e=>`<li class="${e.kind}"><span>${esc(mName(e.m))}</span>${esc(e.t)}</li>`).join("")}</ul>`:`<p class="note">${u("tm_quiet")}</p>`}
+    ${nextEv.length?`<h4>${u("tm_next")}</h4><ul class="tm-ev soon">${nextEv.map(e=>`<li class="${e.kind}"><button class="linkbtn" data-tmgo="${e.m}">${esc(mName(e.m))}</button>${esc(e.t)}</li>`).join("")}</ul>`:""}</section>
+   <section class="tm-decs"><h3>${u("tm_past")}</h3><p class="note">${u("tm_past_p")}</p>${past.length?`<ol class="tmdl">${past.map(x=>tmDecRow(gid,s,act,x,1)).join("")}</ol>`:`<p class="note">${u("tm_none_yet")}</p>`}
+    ${future.length?`<details class="box" ${future.length<4?"open":""}><summary><span><b>${u("tm_future")}</b><small>${u("tm_future_p")}</small></span><span class="num">${future.length}</span></summary><div class="box-b"><ol class="tmdl">${future.map(x=>tmDecRow(gid,s,act,x,0)).join("")}</ol></div></details>`:""}</section>
+  </div><aside class="col-side"><div class="sticky">
+   ${g.forks.length?`<section class="forks"><span class="lbl">${u("tm_start_ch")}</span>${g.forks.map(fk=>`<div class="fork"><span class="q">${L(fk.q)}</span><div class="seg">${fk.o.map(([v,t])=>`<button data-tmfork="${fk.id}" data-v="${v}" aria-pressed="${d0.forks[fk.id]===v}">${L(t)}</button>`).join("")}</div></div>`).join("")}<p class="hint">${u("tm_fork_hint")}</p></section>`:""}
+   <section class="box open nums"><div class="box-h"><b>${u("tm_nums")}</b><small>${u("tm_nums_s")}</small></div><div class="box-b">${nums.map(([k,l,df,st])=>`<label class="numf"><span>${esc(L(l))}</span><input type="number" inputmode="decimal" step="${st}" data-tmnum="${k}" value="${d0.n[k]!=null&&d0.n[k]!==""?d0.n[k]:df(P)}"></label>`).join("")}</div></section>
+   ${s.br.length>1?`<section class="box open"><div class="box-h"><b>${u("tm_cmp",{m:esc(mName(cur))})}</b></div><div class="box-b"><table class="tm-t"><tr><th></th><th>${u("tm_money")}</th><th>${u("fut_prog")}</th><th>${u("fut_risk")}</th></tr>
+    <tr><td><i style="background:var(--c)"></i>${u("fut_rec")}</td><td>${eur(rec.money[cur])}</td><td>${rec.prog[cur]}%</td><td>${rec.risk[cur]}</td></tr>
+    ${runs.map((r,i)=>`<tr class="${i===s.act?"on":""}"><td><i style="background:${BCOL[i%BCOL.length]}"></i>${esc(bName(s.br[i],i))}</td><td>${eur(r.money[cur])}</td><td>${r.prog[cur]}%</td><td>${r.risk[cur]}</td></tr>`).join("")}</table></div></section>`:""}
+   <section class="box open"><div class="box-h"><b>${u("fit_h")}</b></div><div class="box-b">${fitHtml(gid,d0.forks,true)}</div></section>
+   <p class="note">${u("tm_note")}</p>
+  </div></aside></div></div>`}
+function tmPick(){
+  const extra=[sampleState==="ok"?`<button class="line-card" data-tmai="1" style="--c:var(--accent)"><span class="lc-top"><span class="lb">${icon("simular")}</span><span class="meta">${u("tm_ai_tag")}</span></span><b>${u("tm_ai")}</b><small>${u("tm_ai_s")}</small></button>`:"",
+   `<button class="line-card" data-tab="viver" style="--c:var(--l-violet)"><span class="lc-top"><span class="lb">${icon("simular")}</span><span class="meta">${u("tm_life_tag")}</span></span><b>${u("tm_life")}</b><small>${u("tm_life_s")}</small></button>`].join("");
+  return `<section class="sec-h"><span class="kicker">${u("tm_kicker")}</span><h2>${hl(u("tm_h"))}</h2><p>${u("tm_pick_p")}</p></section>
+  <div class="diff"><div><b>${icon("planear")} ${u("tab_planear")}</b><span>${u("diff_plan")}</span></div><div class="on"><b>${icon("simular")} ${u("tab_simular")}</b><span>${u("diff_sim")}</span></div></div>
+  <div class="lines">${G.map(g=>`<button class="line-card" data-tmgoal="${g.id}" style="--c:var(${g.c})"><span class="lc-top"><span class="lb">${gIcon(g.id)}</span><span class="meta">${TMS.by[g.id]&&TMS.by[g.id].br.length>1?TMS.by[g.id].br.length+" "+u("tm_brs"):u("tm_36")}</span></span><b>${L(g.t)}</b><small>${L(g.sub)}</small></button>`).join("")}${extra}</div>`}
+
+// ---------- ações ----------
+function tmAct(gid,fn){tmPush(gid);tmState(gid).flash="";fn();tmSave();save();render()}
+function tmSetDec(gid,id,k){
+  const s=tmState(gid),b=s.br[s.act],d=brData(gid,b),run=tmRun(gid,d),st=run.steps.find(x=>x.id===id);if(!st)return;
+  const past=st.m<=s.cur;
+  tmAct(gid,()=>{
+    if(past&&(d.acts[id]||{}).k!==k&&!((d.acts[id]||{}).k==null&&k==="rec")){ // mudar o passado cria um ramo novo
+      const nb={name:"",from:st.m,forks:Object.assign({},d.forks),acts:JSON.parse(JSON.stringify(d.acts)),n:Object.assign({},d.n)};
+      nb.acts[id]=Object.assign({},nb.acts[id]||{},{k});s.br.push(nb);s.act=s.br.length-1;s.cur=st.m;s.flash=u("tm_newbr",{b:bName(nb,s.act),m:mName(st.m)});
+    }else{const A=b.live?U.acts:(b.acts=b.acts||{});if(k==="rec")delete A[id];else A[id]=Object.assign({},A[id]||{},{k})}})}
+function tmSetFork(gid,fk,v){
+  const s=tmState(gid),b=s.br[s.act],d=brData(gid,b);if(d.forks[fk]===v)return;
+  tmAct(gid,()=>{const nb={name:"",from:0,forks:Object.assign({},d.forks,{[fk]:v}),acts:JSON.parse(JSON.stringify(d.acts)),n:Object.assign({},d.n)};s.br.push(nb);s.act=s.br.length-1;s.flash=u("tm_newbr",{b:bName(nb,s.act),m:mName(0)})})}
+function tmSetNum(gid,k,v){const s=tmState(gid),b=s.br[s.act];const tgt=b.live?(U.nums[gid]=U.nums[gid]||{}):(b.n=b.n||{});tgt[k]=v===""?null:Number(v);tmSave();save()}
+function tmMove(gid,dm){const s=tmState(gid);s.prev=s.cur;s.cur=dm===-99?0:dm===99?TM_H:Math.max(0,Math.min(TM_H,s.cur+dm));tmSave();render()}
+function tmTogglePlay(){const gid=TMS.gid;if(TPLAY){clearInterval(TPLAY);TPLAY=null;render();return}
+  const s=tmState(gid);if(s.cur>=TM_H)s.cur=0;
+  TPLAY=setInterval(()=>{const s=tmState(TMS.gid||gid);if(U.tab!=="simular"||s.cur>=TM_H){clearInterval(TPLAY);TPLAY=null;render();return}s.prev=s.cur;s.cur=Math.min(TM_H,s.cur+TMS.jump);tmSave();render()},700);render()}
+document.addEventListener("click",e=>{
+  const r=e.target.closest("[data-tmx]");if(r&&TMS.gid){const svg=r.ownerSVGElement,bb=svg.getBoundingClientRect(),W=680,pl=66,pr=14;const px=(e.clientX-bb.left)/bb.width*W;const m=Math.round((px-pl)/(W-pl-pr)*TM_H);const s=tmState(TMS.gid);s.prev=s.cur;s.cur=Math.max(0,Math.min(TM_H,m));tmSave();render();return}
+  const b=e.target.closest("button");if(!b)return;const d=b.dataset,gid=TMS.gid;
+  if(d.tmgoal){TMS.gid=d.tmgoal;tmSave();U.tab="simular";render();toTop();e.stopImmediatePropagation();return}
+  if(d.tmpick){TMS.gid=null;tmSave();render();toTop();e.stopImmediatePropagation();return}
+  if(d.tmai){TMS.ai=1;TMS.gid=null;tmSave();render();e.stopImmediatePropagation();return}
+  if(!gid)return;
+  if(d.tmj){tmJump(+d.tmj);e.stopImmediatePropagation();return}
+  if(d.tmh){tmHz(+d.tmh);e.stopImmediatePropagation();return}
+  if(d.tmjset){TMS.jump=+d.tmjset;tmSave();render();e.stopImmediatePropagation();return}
+  if(d.tmstep){tmMove(gid,+d.tmstep);e.stopImmediatePropagation();return}
+  if(d.tmgo!==undefined){const s=tmState(gid);s.prev=s.cur;s.cur=+d.tmgo;tmSave();render();e.stopImmediatePropagation();return}
+  if(b.id==="tmPlay"){tmTogglePlay();e.stopImmediatePropagation();return}
+  if(b.id==="tmUndo"){const s=tmState(gid);if(!s.hist.length)return;s.fut.push(tmSnap(gid));tmRestore(gid,s.hist.pop());tmSave();save();render();e.stopImmediatePropagation();return}
+  if(b.id==="tmRedo"){const s=tmState(gid);if(!s.fut.length)return;s.hist.push(tmSnap(gid));tmRestore(gid,s.fut.pop());tmSave();save();render();e.stopImmediatePropagation();return}
+  if(d.tmdec){tmSetDec(gid,d.tmdec,d.k);e.stopImmediatePropagation();return}
+  if(d.tmfork){tmSetFork(gid,d.tmfork,d.v);e.stopImmediatePropagation();return}
+  if(d.tmbr!==undefined){const s=tmState(gid);s.act=+d.tmbr;tmSave();render();e.stopImmediatePropagation();return}
+  if(d.tmrm!==undefined){tmAct(gid,()=>{const s=tmState(gid),i=+d.tmrm;s.br.splice(i,1);if(s.act>=i)s.act=Math.max(0,s.act-1)});e.stopImmediatePropagation();return}
+  if(d.tmguide){U.goal=gid;U.tab="planear";U.open[d.tmguide]=true;render();setTimeout(()=>{const el=document.querySelector(`[data-open="${d.tmguide}"]`);if(el&&el.scrollIntoView)el.scrollIntoView({behavior:"smooth",block:"center"})},60);e.stopImmediatePropagation();return}
+},true);
+document.addEventListener("input",e=>{const t=e.target,gid=TMS.gid;if(!gid)return;
+  if(t.id==="tmRange"){const s=tmState(gid);s.prev=s.cur;s.cur=+t.value;tmSave();render();const r=document.getElementById("tmRange");if(r)r.focus();return}
+  if(t.dataset&&t.dataset.tmnum){tmSetNum(gid,t.dataset.tmnum,t.value);return}},true);
+document.addEventListener("change",e=>{const t=e.target;if(t.dataset&&t.dataset.tmnum&&TMS.gid){tmPush(TMS.gid);tmSave();render()}},true);
+document.addEventListener("keydown",e=>{if(U.tab!=="simular"||!TMS.gid)return;const t=e.target;if(t&&(t.tagName==="INPUT"&&t.type!=="range"||t.tagName==="TEXTAREA"))return;
+  if(e.key==="ArrowRight"||e.key==="ArrowLeft"){if(t&&t.id==="tmRange")return;e.preventDefault();tmMove(TMS.gid,(e.key==="ArrowRight"?1:-1)*(e.shiftKey?12:TMS.jump))}
+  if(e.key==="ArrowUp"||e.key==="ArrowDown"){e.preventDefault();tmJump(e.key==="ArrowUp"?1:-1)}});
+
+// ================= Ajuda prática em cada passo (funciona sem IA) =================
+// Email pronto a enviar, o que dizer ao balcão, lista do que levar e contas.
+U.chk=U.chk||{};U.calc=U.calc||{};U.mto=U.mto||{};
+let HK={};
+const ENT_PT=e=>(ENTL.pt&&ENTL.pt[e])||e;
+const pName=()=>P.name||"[o teu nome]";
+const EMAIL_V=["info","marcar","estado","reclamar"];
+function emailText(id,v){
+  const s=S[id],t=s.t,ent=ENT_PT(s.e),docs=s.l||"";
+  const sig=`\n\nCom os melhores cumprimentos,\n${pName()}\nNIF: [o teu NIF] · Telefone: [o teu número]`;
+  if(v==="marcar")return {sub:`Pedido de marcação de atendimento: ${t}`,body:`Exmos. Senhores,\n\nGostaria de marcar um atendimento para tratar de: ${t}.\n${docs?`Vou levar: ${docs}.\n`:""}Tenho disponibilidade em [dias e horas]. Se for possível tratar o assunto online ou por email, agradeço que me indiquem como.\n\nPodem confirmar também se há algum custo e quanto tempo demora?${sig}`};
+  if(v==="estado")return {sub:`Pedido de ponto de situação: ${t} (processo n.º [número])`,body:`Exmos. Senhores,\n\nNo dia [data] entreguei o pedido de ${t} (processo ou referência n.º [número]).\nVenho pedir informação sobre o estado do processo e se falta algum documento da minha parte.\n\nAgradeço desde já a resposta.${sig}`};
+  if(v==="reclamar")return {sub:`Reclamação por atraso: ${t} (processo n.º [número])`,body:`Exmos. Senhores,\n\nNo dia [data] fiz o pedido de ${t} (processo n.º [número]) e, até hoje, não recebi resposta, apesar de [contactos já feitos].\nEste atraso está a causar-me [o problema concreto, por exemplo: não consigo começar a trabalhar / receber o apoio].\n\nPeço que me informem por escrito do estado do processo e da data prevista de decisão.\nSe não tiver resposta em 10 dias úteis, irei apresentar reclamação no Livro de Reclamações Eletrónico (livroreclamacoes.pt).${sig}`};
+  return {sub:`Pedido de informação: ${t}`,body:`Exmos. Senhores,\n\nPretendo tratar de: ${t}.\nPodem confirmar, por favor:\n1. Que documentos tenho de apresentar${docs?` (penso que são: ${docs})`:""}?\n2. Se é possível tratar online ou se tenho de ir ao balcão e marcar atendimento.\n3. Qual o custo e quanto tempo costuma demorar.\n\nObrigado(a) pela ajuda.${sig}`}}
+function deskText(id){
+  const s=S[id],t=s.t,docs=s.l||"";
+  return `${u("hk_say")}\n«Bom dia. Venho tratar de ${t.charAt(0).toLowerCase()+t.slice(1)}.${docs?` Trago ${docs.charAt(0).toLowerCase()+docs.slice(1)}.`:""} Pode confirmar se tenho tudo o que é preciso?»\n\n${u("hk_ask")}\n1. «Há algum custo? Posso pagar com cartão?»\n2. «Quanto tempo demora e como sei que ficou tratado?»\n3. «Falta alguma coisa que eu tenha de entregar depois?»\n4. «Há algum prazo que eu não possa falhar?»\n\n${u("hk_before")}\n«Pode dar-me um comprovativo com a data e o número do pedido?»`}
+function checkItems(id){const s=stp(id),items=[];(s.l?s.l.split(/,\s*|;\s*/):[]).forEach(x=>{x=x.trim();if(x)items.push(u("hk_bring")+": "+x)});(s.h||[]).forEach(h=>items.push(h));items.push(u("hk_proof"));return items}
+const CALC_STEP={irsjovem:["irsjovem"],atividade:["recibos"],ssindep:["recibos"],licencaparental:["parental"],arrendar:["casa"],porta65:["casa"],apoiorenda:["casa"],procurar:["casa"],orcamento:["poupanca","casa"],simular:["casa"],contrato:["salario"],estagio:["salario"],aforro:["poupanca"],ppr:["poupanca"],planonegocio:["recibos","poupanca"],montanteunico:["poupanca"]};
+const CALC_GOAL={emprego:["salario","irsjovem"],carreira:["salario","poupanca"],negocio:["recibos","poupanca"],casa:["casa","poupanca"],sair:["casa","poupanca"],mudar:["casa","salario"],filho:["parental","poupanca"],estudar:["poupanca"],emigrar:["poupanca"],reforma:["poupanca"]};
+function helpBlock(key,info){
+  const id=key.indexOf("s-")===0?key.slice(2):null;
+  if(!id||!S[id]){HINFO[key]=info;if(sampleState!=="ok")return "";const s=HELP[key]||{},b=(k,t)=>`<button data-help="${key}" data-kind="${k}" ${s.busy?"disabled":""}>${t}</button>`;
+    return `<div class="helper"><div class="hb">${b("email",u("help_email"))}${b("balcao",u("help_desk"))}${b("lista",u("help_list"))}</div>${s.text?`<div class="hout" id="hout-${key}">${esc(s.text)}</div><div class="hrow"><button class="btn sm" data-copy="${key}">${u("copy")}</button></div>`:""}</div>`}
+  HINFO[key]=info;
+  const h=HK[id]||{},calcs=CALC_STEP[id]||[];
+  const tb=(m,ic,t)=>`<button data-hk="${id}" data-m="${m}" aria-pressed="${h.m===m}">${ic} ${t}</button>`;
+  let body="";
+  if(h.m==="email"){const v=h.v||"info",e=emailText(id,v),txt=h.txt!=null?h.txt:e.body,to=U.mto[S[id].e]||"";
+    body=`<div class="hk-p"><div class="seg sm">${EMAIL_V.map(x=>`<button data-hkv="${id}" data-v="${x}" aria-pressed="${v===x}">${u("hk_v_"+x)}</button>`).join("")}</div>
+     <label class="numf col"><span>${u("hk_to")}</span><input type="email" data-hkto="${S[id].e}" value="${esc(to)}" placeholder="${esc(u("hk_to_ph"))}"></label>
+     <label class="numf col"><span>${u("hk_subj")}</span><input type="text" id="hks-${id}" value="${esc(h.sub!=null?h.sub:e.sub)}" data-hksub="${id}"></label>
+     <label class="numf col"><span>${u("hk_body")}</span><textarea id="hkt-${id}" data-hktxt="${id}" rows="11">${esc(txt)}</textarea></label>
+     <p class="note">${u("hk_fill")}${LANG!=="pt"?" "+u("hk_pt"):""}</p>
+     <div class="hrow"><button class="btn sm primary" data-hkmail="${id}">${u("hk_open")}</button><button class="btn sm" data-hkcopy="${id}">${u("copy")}</button>${sampleState==="ok"?`<button class="btn sm" data-help="${key}" data-kind="email">${u("hk_ai")}</button>`:""}</div>
+     ${s_ai(key)}</div>`}
+  else if(h.m==="desk"){body=`<div class="hk-p"><pre class="hk-pre" id="hkd-${id}">${esc(deskText(id))}</pre><div class="hrow"><button class="btn sm" data-hkcopyd="${id}">${u("copy")}</button>${TEL[S[id].e]?`<a class="btn sm" href="tel:${TEL[S[id].e].replace(/\s/g,"")}">${u("hk_call")} ${TEL[S[id].e]}</a>`:""}</div>${LANG!=="pt"?`<p class="note">${u("hk_pt2")}</p>`:""}</div>`}
+  else if(h.m==="list"){const it=checkItems(id),ck=U.chk[id]||{};body=`<div class="hk-p"><ul class="hk-list">${it.map((x,i)=>`<li><label><input type="checkbox" data-hkck="${id}" data-i="${i}" ${ck[i]?"checked":""}><span>${esc(x)}</span></label></li>`).join("")}</ul><p class="note">${u("hk_list_n",{a:Object.values(ck).filter(Boolean).length,b:it.length})}</p></div>`}
+  else if(h.m==="calc"){body=`<div class="hk-p">${calcs.map(calcHtml).join("")}</div>`}
+  return `<div class="helper hk"><div class="ht">${u("help_t")}<small>${u("hk_s")}</small></div>
+   <div class="hb">${tb("email","✉️",u("hk_email"))}${tb("desk","🗣️",u("hk_desk"))}${tb("list","☑️",u("hk_list"))}${calcs.length?tb("calc","🧮",u("hk_calc")):""}</div>${body}</div>`}
+function s_ai(key){const s=HELP[key];if(!s||(!s.text&&!s.busy))return "";return `<div class="hout" id="hout-${key}">${esc(s.text||u("preparing"))}</div><div class="hrow"><button class="btn sm" data-copy="${key}">${u("copy")}</button></div>`}
+
+// ---------- calculadoras ----------
+const CALC={
+ salario:{t:["Salário líquido","Net salary","Salario neto"],f:[["bruto",["Salário bruto por mês (€)","Gross salary per month (€)","Salario bruto al mes (€)"],1100],["jy",["Ano do IRS Jovem (0 = não tens)","IRS Jovem year (0 = none)","Año del IRS Jovem (0 = no tienes)"],()=>P.age<=35?1:0]],
+  run:v=>{const r=netMonthly(v.bruto,v.jy);return [[u("c_ss"),eur(r.ss)],[u("c_irs"),eur(r.irs)],[u("c_net"),eur(r.net),1]]},n:"c_sal_n",src:["https://info.portaldasfinancas.gov.pt/pt/at/Divulgacao/publicacoes_internas/Newsletter_AT/Documents/Newsletter-39-janeiro-2026.pdf","AT, jan. 2026"]},
+ irsjovem:{t:["IRS Jovem: quanto poupas","IRS Jovem: how much you save","IRS Jovem: cuánto ahorras"],f:[["bruto",["Rendimento bruto por ano (€)","Gross income per year (€)","Ingresos brutos al año (€)"],18000],["jy",["Ano de rendimentos (1 a 10)","Income year (1 to 10)","Año de ingresos (1 a 10)"],1]],
+  run:v=>{const sem=irsAnnual(v.bruto,0),com=irsAnnual(v.bruto,Math.max(1,Math.min(10,v.jy||1))),pct=v.jy<=1?100:v.jy<=4?75:v.jy<=7?50:25;return [[u("c_pct"),pct+"%"],[u("c_irs_sem"),eur(sem)],[u("c_irs_com"),eur(com)],[u("c_save"),eur(sem-com),1]]},n:"c_irsj_n",src:["https://info.portaldasfinancas.gov.pt/pt/at/Divulgacao/publicacoes_internas/Newsletter_AT/Documents/Newsletter-39-janeiro-2026.pdf","AT: limite de 29 542,15 € em 2026"]},
+ recibos:{t:["Recibos verdes: quanto pagas","Self-employed: what you pay","Autónomo: cuánto pagas"],f:[["rend",["Quanto recebes por mês (€)","What you earn per month (€)","Lo que cobras al mes (€)"],1200],["mes",["Meses desde que abriste atividade","Months since you registered","Meses desde que te diste de alta"],1]],
+  run:v=>{const ss=v.mes>12?v.rend*.7*.214:0,anual=v.rend*12;return [[u("c_ss_ind"),v.mes>12?eur(ss)+" / "+u("c_mo"):u("c_ss_free",{n:Math.max(0,13-v.mes)})],[u("c_ss_after"),eur(v.rend*.7*.214)+" / "+u("c_mo")],[u("c_coletavel"),eur(anual*.75)],[u("c_iva"),anual>18750?u("c_iva_now"):anual>15000?u("c_iva_next"):u("c_iva_ok"),1]]},n:"c_rec_n",src:["https://www.seg-social.pt/","Segurança Social"]},
+ casa:{t:["Taxa de esforço da casa","Housing cost ratio","Tasa de esfuerzo de la vivienda"],f:[["renda",["Renda ou prestação por mês (€)","Rent or mortgage per month (€)","Alquiler o cuota al mes (€)"],()=>P.reg==="lis"?1000:700],["rend",["Rendimento líquido da casa por mês (€)","Household net income per month (€)","Ingresos netos del hogar al mes (€)"],1600]],
+  run:v=>{const p=v.rend?Math.round(v.renda/v.rend*100):0;return [[u("c_ratio"),p+"%",1],[u("c_verdict"),p<=33?u("c_ok33"):p<=50?u("c_mid"):u("c_high")],[u("c_max33"),eur(v.rend/3)]]},n:"c_casa_n",src:["https://clientebancario.bportugal.pt/","Banco de Portugal"]},
+ poupanca:{t:["Quanto tempo até lá chegar","How long until you get there","Cuánto tiempo hasta llegar"],f:[["obj",["Quanto precisas (€)","How much you need (€)","Cuánto necesitas (€)"],5000],["tens",["Quanto já tens (€)","How much you have (€)","Cuánto tienes ya (€)"],()=>P.pou],["mes",["Quanto poupas por mês (€)","How much you save per month (€)","Cuánto ahorras al mes (€)"],200],["desp",["As tuas despesas por mês (€)","Your monthly costs (€)","Tus gastos al mes (€)"],900]],
+  run:v=>{const falta=Math.max(0,v.obj-v.tens),m=v.mes>0?Math.ceil(falta/v.mes):null;return [[u("c_left"),eur(falta)],[u("c_months"),falta===0?u("c_there"):m==null?u("c_never"):u("c_in_m",{n:m,d:mName(m)}),1],[u("c_emerg"),eur(v.desp*3)+" – "+eur(v.desp*6)]]},n:"c_pou_n"},
+ parental:{t:["Licença parental: quanto recebes","Parental leave: what you get","Permiso parental: cuánto recibes"],f:[["bruto",["Salário bruto por mês (€)","Gross salary per month (€)","Salario bruto al mes (€)"],1200],["op",["Opção: 1 = 120 dias, 2 = 150 dias, 3 = 150 partilhados, 4 = 180 partilhados","Option: 1 = 120 days, 2 = 150 days, 3 = 150 shared, 4 = 180 shared","Opción: 1 = 120 días, 2 = 150 días, 3 = 150 compartidos, 4 = 180 compartidos"],1]],
+  run:v=>{const o=[[120,1],[150,.8],[150,1],[180,.83]][Math.max(0,Math.min(3,(v.op||1)-1))],day=v.bruto*12/360,pd=Math.max(day*o[1],IAS26/30*.8);return [[u("c_days"),o[0]+" · "+Math.round(o[1]*100)+"%"],[u("c_per_mo"),eur(pd*30),1],[u("c_total"),eur(pd*o[0])]]},n:"c_par_n",src:["https://www.gpp.pt/images/GPP/Orientacoes_tecnicas/Parentalidade.pdf","GPP: regras da licença"]}
+};
+function calcVals(k){const c=CALC[k],st=U.calc[k]||{},v={};c.f.forEach(([f,,d])=>{const x=st[f];v[f]=x!=null&&x!==""?Number(x):(typeof d==="function"?d():d)});return v}
+function calcOut(k){const rows=CALC[k].run(calcVals(k));return rows.map(([a,b,strong])=>`<div class="cr ${strong?"strong":""}"><span>${esc(a)}</span><b>${esc(b)}</b></div>`).join("")}
+function calcHtml(k){const c=CALC[k],v=calcVals(k);
+  return `<section class="calc"><h4>${L(c.t)}</h4><div class="cin">${c.f.map(([f,l])=>`<label class="numf"><span>${esc(L(l))}</span><input type="number" inputmode="decimal" data-calc="${k}" data-cf="${f}" value="${v[f]}"></label>`).join("")}</div>
+   <div class="cout" data-cout="${k}">${calcOut(k)}</div><p class="note">${u(c.n)}${c.src?` <a href="${c.src[0]}" target="_blank" rel="noopener">${esc(c.src[1])} ↗</a>`:""}</p></section>`}
+function calcBox(gid){const ks=CALC_GOAL[gid]||[];if(!ks.length)return "";return `<details class="box calcs"><summary><span><b>🧮 ${u("calc_h")}</b><small>${u("calc_s")}</small></span><span class="num">${ks.length}</span></summary><div class="box-b">${ks.map(calcHtml).join("")}</div></details>`}
+function guideTmCta(gid){const pl=plan(gid),dv=devIds(pl).length;
+  return `<section class="tmcta"><div><b>${icon("simular")} ${u("tm_cta_h")}</b><p>${u("tm_cta_p")}${dv?" "+u("tm_cta_dev",{n:dv}):""}</p></div><button class="btn primary" data-tmgoal="${gid}">${u("tm_cta_go")} →</button></section>
+   <div class="dev-wrap"><h4>${u("dev_h")}</h4>${devList(pl,null)}</div>`}
+const copyTxt=(txt,b)=>{const ok=()=>{const o=b.textContent;b.textContent=u("copied")+" ✓";setTimeout(()=>{b.textContent=o},1500)};try{navigator.clipboard.writeText(txt).then(ok,()=>{})}catch(_){}};
+document.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;const d=b.dataset;
+  if(d.hk){const h=HK[d.hk]=HK[d.hk]||{};h.m=h.m===d.m?null:d.m;render();e.stopImmediatePropagation();return}
+  if(d.hkv){const h=HK[d.hkv]=HK[d.hkv]||{};h.v=d.v;h.txt=null;h.sub=null;render();e.stopImmediatePropagation();return}
+  if(d.hkcopy){const t=document.getElementById("hkt-"+d.hkcopy),s=document.getElementById("hks-"+d.hkcopy);copyTxt((s?s.value+"\n\n":"")+(t?t.value:""),b);e.stopImmediatePropagation();return}
+  if(d.hkcopyd){const t=document.getElementById("hkd-"+d.hkcopyd);copyTxt(t?t.textContent:"",b);e.stopImmediatePropagation();return}
+  if(d.hkmail){const id=d.hkmail,t=document.getElementById("hkt-"+id),s=document.getElementById("hks-"+id),to=U.mto[S[id].e]||"";
+    const url="mailto:"+encodeURIComponent(to)+"?subject="+encodeURIComponent(s?s.value:"")+"&body="+encodeURIComponent(t?t.value:"");try{window.open(url,"_blank")||(location.href=url)}catch(_){location.href=url}e.stopImmediatePropagation();return}
+},true);
+document.addEventListener("input",e=>{const t=e.target,d=t.dataset||{};
+  if(d.hktxt){(HK[d.hktxt]=HK[d.hktxt]||{}).txt=t.value;return}
+  if(d.hksub){(HK[d.hksub]=HK[d.hksub]||{}).sub=t.value;return}
+  if(d.hkto){U.mto[d.hkto]=t.value.trim();save();return}
+  if(d.calc){const st=U.calc[d.calc]=U.calc[d.calc]||{};st[d.cf]=t.value;save();document.querySelectorAll(`[data-cout="${d.calc}"]`).forEach(o=>o.innerHTML=calcOut(d.calc));return}
+},true);
+document.addEventListener("change",e=>{const t=e.target,d=t.dataset||{};if(d.hkck){const c=U.chk[d.hkck]=U.chk[d.hkck]||{};c[d.i]=t.checked;save();render()}},true);
+
+// ---------- textos ----------
+const UI5={
+pt:{sim_this:"Ver na Máquina do tempo",cmp_this:"Comparar com outro caminho",tab_simular:"Máquina do tempo",nav_simular:"Tempo",tab_planear:"Guia passo a passo",nav_planear:"Passos",
+ diff_plan:"O que fazer agora, onde e como. Com email pronto, o que dizer ao balcão e contas.",diff_sim:"O que acontece depois. Avança e recua no tempo e muda decisões para ver outro futuro.",
+ tm_kicker:"Máquina do tempo",tm_h:"Avança, recua e |muda o que decidiste|.",tm_pick_p:"Escolhe um objetivo. Vais ver os próximos 3 anos, mês a mês, com o teu dinheiro, o progresso e os riscos. Os passos são as tuas decisões: muda-os e vê o futuro mudar.",
+ tm_p:"Arrasta a linha do tempo, carrega no gráfico ou usa os botões. Muda uma decisão do passado e nasce um ramo novo; compara os ramos lado a lado.",
+ tm_other:"Outro objetivo",tm_toguide:"Passos e ajuda no Guia",tm_ctl:"Controlo do tempo",tm_today:"Hoje",tm_m1:"mês",tm_mN:"meses",tm_y1:"ano",tm_yN:"anos",tm_ya:"a",
+ tm_start:"Voltar ao início",tm_b12:"Recuar 1 ano",tm_b1:"Recuar 1 mês",tm_f1:"Avançar 1 mês",tm_f12:"Avançar 1 ano",tm_end:"Ir para o fim",tm_play:"Ver o tempo a passar",tm_pause:"Pausa",tm_undo:"Desfazer",tm_redo:"Refazer",
+ tm_keys:"Dica: no computador, ← → andam no tempo e ↑ ↓ mudam o tamanho do salto.",tm_jump:"Saltar de",tm_hz:"Ver até",tm_less:"Diminuir",tm_more:"Aumentar",tm_back_j:"Recuar {j}",tm_fwd_j:"Avançar {j}",tm_from:"desde",tm_yours:"O teu caminho",tm_branch:"Ramo",tm_brs:"ramos",tm_36:"até 10 anos, ao teu ritmo",
+ tm_chart:"Dinheiro ao longo do tempo em cada caminho",tm_k_rec:"como recomendado",tm_k_alt:"à tua maneira",tm_k_skip:"saltaste",
+ tm_money:"Dinheiro",tm_vs_rec:"face ao recomendado",tm_month:"Saldo do mês",tm_month_s:"entra menos sai",tm_risk_s:"0 a 100: passos saltados ou feitos à tua maneira",
+ tm_happened:"O que acontece até {m}",tm_quiet:"Nada de especial neste mês. Avança no tempo.",tm_next:"A seguir",
+ tm_past:"Decisões até aqui",tm_past_p:"Muda uma decisão passada e cria-se um ramo novo a partir desse mês. O teu caminho fica guardado.",tm_none_yet:"Ainda não há decisões neste ponto. Avança no tempo.",
+ tm_future:"Decisões que vêm aí",tm_future_p:"Podes decidir já; muda o teu caminho sem criar ramo.",tm_goto:"Voltar a este mês",tm_help:"Ajuda neste passo",
+ tm_start_ch:"Escolhas de partida",tm_fork_hint:"Mudar uma escolha de partida cria um ramo novo desde hoje.",tm_nums:"Os teus números",tm_nums_s:"Valores de exemplo: muda para os teus.",
+ tm_cmp:"Ramos em {m}",tm_note:"Simulação com regras conhecidas de 2026 (Segurança Social, IVA, IRS, IRS Jovem) e com os teus números. Não substitui um contabilista ou jurista.",
+ tm_newbr:"Criado o {b} a partir de {m}. O teu caminho original continua guardado.",
+ tm_ai:"Cenário livre com IA",tm_ai_s:"Escreve qualquer decisão e a IA narra as consequências. Só funciona dentro do Claude.",tm_ai_tag:"IA",tm_life:"A vida inteira, por perguntas",tm_life_s:"Para quem não sabe por onde começar: escolhes em cada fase da vida e podes voltar atrás.",tm_life_tag:"guiado",tm_aiback:"Máquina do tempo",
+ tm_ev_inv:"Pões {v} no início.",tm_ev_skip:"Saltaste: {t}.",tm_ev_skipx:"Efeito de teres saltado «{t}»: {x}",tm_ev_skipg:"Efeito de teres saltado «{t}»: podes ter coimas, perder um apoio ou ter de repetir o passo mais tarde.",
+ tm_ev_alt:"Fizeste à tua maneira: {t}.",tm_ev_done:"Feito: {t}.",tm_ev_ssend:"Acabam os 12 meses de isenção: passas a pagar cerca de {v} por mês à Segurança Social (21,4% sobre 70% do que recebes).",
+ tm_ev_iva:"Ao ritmo atual passas os 15.000 € por ano: deixas de estar isento(a) de IVA (acima de 18.750 € é logo).",tm_ev_irc:"Primeiro fecho de contas: IRC e IES, feitos pelo contabilista.",tm_ev_open:"Atividade aberta: começas a faturar.",
+ tm_ev_job:"Primeiro salário: cerca de {v} líquidos por mês.",tm_ev_irsj:"Com IRS Jovem, o 1.º ano fica isento de IRS até 29.542 €.",tm_ev_trial:"Fim do período experimental (em regra 90 dias): a partir daqui, o despedimento tem regras.",
+ tm_ev_rent:"Começas a pagar {v} por mês: {p}% do teu rendimento (acima de 33% fica apertado).",tm_ev_birth:"Nascimento: pede a licença parental e o abono de família.",tm_ev_leave:"Acaba a licença parental inicial: regresso ao trabalho ou licença alargada.",
+ tm_ev_study:"Começas o curso: propina de {v} por ano.",tm_ev_move:"Mudança para o novo país: muda a morada fiscal e o cartão europeu de saúde.",tm_ev_pens:"Num ano poupaste {v} para a reforma.",
+ tm_ev_irs:"Entrega do IRS (1 de abril a 30 de junho).",tm_ev_neg:"O dinheiro fica negativo: precisas de cortar custos, adiar ou financiar.",
+ tm_cta_h:"E se fizeres diferente?",tm_cta_p:"Na Máquina do tempo vês este caminho nos próximos 3 anos, mês a mês, e podes mudar qualquer decisão.",tm_cta_dev:"Já tens {n} desvio(s) marcado(s).",tm_cta_go:"Abrir na Máquina do tempo",
+ hk_s:"Escolhe uma ajuda. Enviar e ir ao balcão continua a ser contigo.",hk_email:"Escrever email",hk_desk:"O que dizer",hk_list:"Lista",hk_calc:"Fazer contas",
+ hk_v_info:"Pedir informação",hk_v_marcar:"Marcar atendimento",hk_v_estado:"Ponto de situação",hk_v_reclamar:"Reclamar atraso",
+ hk_to:"Para (email da entidade, se souberes)",hk_to_ph:"está no site oficial, em «Contactos»",hk_subj:"Assunto",hk_body:"Texto (podes editar)",hk_fill:"Substitui o que está entre [parênteses retos].",hk_pt:"",hk_pt2:"",
+ hk_open:"Abrir no meu email",hk_ai:"Personalizar com IA",hk_call:"Ligar",hk_say:"Ao chegar, diz:",hk_ask:"Depois pergunta:",hk_before:"Antes de saíres, pede:",hk_bring:"Levar",hk_proof:"Guardar o comprovativo (foto ou PDF) com a data",hk_list_n:"{a} de {b} feitos",
+ calc_h:"Fazer contas",calc_s:"Com as regras de 2026",
+ c_ss:"Segurança Social (11%)",c_irs:"IRS estimado por mês",c_net:"Líquido por mês (14 meses)",c_sal_n:"Estimativa com os escalões de IRS de 2026, sem deduções (despesas, dependentes), que baixam o imposto. A retenção mensal real segue as tabelas da AT.",
+ c_pct:"Isenção neste ano",c_irs_sem:"IRS sem IRS Jovem",c_irs_com:"IRS com IRS Jovem",c_save:"Poupas por ano",c_irsj_n:"Até aos 35 anos, 10 anos: 100% no 1.º, 75% do 2.º ao 4.º, 50% do 5.º ao 7.º, 25% do 8.º ao 10.º. Limite: 29.542,15 € por ano.",
+ c_ss_ind:"Segurança Social agora",c_ss_free:"isento(a) mais {n} mês(es)",c_ss_after:"Depois da isenção",c_mo:"mês",c_coletavel:"Parte que conta para IRS (75%, por ano)",c_iva:"IVA",c_iva_now:"Passa logo a cobrar IVA (acima de 18.750 €)",c_iva_next:"Perdes a isenção no ano seguinte (acima de 15.000 €)",c_iva_ok:"Isento(a) de IVA (até 15.000 € por ano)",
+ c_rec_n:"Regime simplificado, prestação de serviços. Primeiros 12 meses isentos de contribuições; depois 21,4% sobre 70% do rendimento.",
+ c_ratio:"Taxa de esforço",c_verdict:"Leitura",c_ok33:"Confortável (até 1/3)",c_mid:"Apertado: sobra pouco para imprevistos",c_high:"Muito alto: acima de 50%, o limite que o Banco de Portugal usa no crédito",c_max33:"Renda máxima confortável (1/3)",c_casa_n:"Regra prática: casa até 1/3 do rendimento líquido.",
+ c_left:"Falta juntar",c_months:"Chegas lá",c_there:"Já tens o suficiente",c_never:"Sem poupar todos os meses, não chegas",c_in_m:"em {n} meses ({d})",c_emerg:"Fundo de emergência (3 a 6 meses de despesas)",c_pou_n:"Junta primeiro o fundo de emergência; depois, a meta.",
+ c_days:"Dias e percentagem",c_per_mo:"Por mês, aproximadamente",c_total:"Total da licença",c_par_n:"Regras atuais: 120 dias a 100%, 150 a 80%, 150 partilhados a 100%, 180 partilhados a 83%. O subsídio não paga IRS nem Segurança Social. Há uma reforma em discussão."},
+en:{sim_this:"See it in the Time machine",tab_simular:"Time machine",nav_simular:"Time",tab_planear:"Step-by-step guide",nav_planear:"Steps",
+ diff_plan:"What to do now, where and how. With a ready email, what to say at the desk and the maths.",diff_sim:"What happens next. Move forward and back in time and change decisions to see another future.",
+ tm_kicker:"Time machine",tm_h:"Move forward, go back and |change what you decided|.",tm_pick_p:"Pick a goal. You'll see the next 3 years, month by month: your money, progress and risks. The steps are your decisions: change them and watch the future change.",
+ tm_p:"Drag the timeline, click the chart or use the buttons. Change a past decision and a new branch is born; compare branches side by side.",
+ tm_other:"Another goal",tm_toguide:"Steps and help in the Guide",tm_ctl:"Time controls",tm_today:"Today",tm_m1:"month",tm_mN:"months",tm_y1:"year",tm_yN:"years",tm_ya:"y",
+ tm_start:"Back to the start",tm_b12:"Back 1 year",tm_b1:"Back 1 month",tm_f1:"Forward 1 month",tm_f12:"Forward 1 year",tm_end:"Go to the end",tm_play:"Watch time pass",tm_pause:"Pause",tm_undo:"Undo",tm_redo:"Redo",
+ tm_keys:"Tip: on a computer, ← → move through time and ↑ ↓ change the jump size.",tm_jump:"Jump by",tm_hz:"Show up to",tm_less:"Decrease",tm_more:"Increase",tm_back_j:"Back {j}",tm_fwd_j:"Forward {j}",tm_from:"from",tm_yours:"Your path",tm_branch:"Branch",tm_brs:"branches",tm_36:"up to 10 years, at your pace",
+ tm_chart:"Money over time on each path",tm_k_rec:"as recommended",tm_k_alt:"your way",tm_k_skip:"skipped",
+ tm_money:"Money",tm_vs_rec:"vs recommended",tm_month:"Monthly balance",tm_month_s:"in minus out",tm_risk_s:"0 to 100: steps skipped or done your way",
+ tm_happened:"What happens up to {m}",tm_quiet:"Nothing special this month. Move forward in time.",tm_next:"Coming up",
+ tm_past:"Decisions so far",tm_past_p:"Change a past decision and a new branch starts from that month. Your path stays saved.",tm_none_yet:"No decisions yet at this point. Move forward in time.",
+ tm_future:"Decisions ahead",tm_future_p:"You can decide now; it changes your path without creating a branch.",tm_goto:"Go back to this month",tm_help:"Help with this step",
+ tm_start_ch:"Starting choices",tm_fork_hint:"Changing a starting choice creates a new branch from today.",tm_nums:"Your numbers",tm_nums_s:"Example values: change them to yours.",
+ tm_cmp:"Branches at {m}",tm_note:"Simulation using known 2026 rules (Social Security, VAT, income tax, IRS Jovem) and your numbers. It doesn't replace an accountant or lawyer.",
+ tm_newbr:"Created {b} from {m}. Your original path is still saved.",
+ tm_ai:"Free scenario with AI",tm_ai_s:"Write any decision and the AI narrates the consequences. Only works inside Claude.",tm_ai_tag:"AI",tm_life:"Your whole life, by questions",tm_life_s:"If you don't know where to start: choose at each stage of life and go back whenever you like.",tm_life_tag:"guided",tm_aiback:"Time machine",
+ tm_ev_inv:"You put in {v} at the start.",tm_ev_skip:"You skipped: {t}.",tm_ev_skipx:"Effect of skipping “{t}”: {x}",tm_ev_skipg:"Effect of skipping “{t}”: you may get fines, lose support or have to redo the step later.",
+ tm_ev_alt:"You did it your way: {t}.",tm_ev_done:"Done: {t}.",tm_ev_ssend:"The 12-month exemption ends: you now pay about {v} a month to Social Security (21.4% on 70% of what you earn).",
+ tm_ev_iva:"At this pace you pass €15,000 a year: you lose the VAT exemption (above €18,750 it's immediate).",tm_ev_irc:"First year-end: corporate tax and IES, done by your accountant.",tm_ev_open:"Business registered: you start invoicing.",
+ tm_ev_job:"First salary: about {v} net a month.",tm_ev_irsj:"With IRS Jovem, year 1 is tax-free up to €29,542.",tm_ev_trial:"Probation ends (usually 90 days): from now on, dismissal has rules.",
+ tm_ev_rent:"You start paying {v} a month: {p}% of your income (over 33% gets tight).",tm_ev_birth:"Birth: apply for parental leave and child benefit.",tm_ev_leave:"Initial parental leave ends: back to work or extended leave.",
+ tm_ev_study:"You start the course: tuition of {v} a year.",tm_ev_move:"Move to the new country: change your tax address and get the European health card.",tm_ev_pens:"In a year you saved {v} for retirement.",
+ tm_ev_irs:"Income tax return due (1 April to 30 June).",tm_ev_neg:"Your money goes negative: you need to cut costs, delay or get funding.",
+ tm_cta_h:"What if you do it differently?",tm_cta_p:"In the Time machine you see this path over the next 3 years, month by month, and can change any decision.",tm_cta_dev:"You've already marked {n} detour(s).",tm_cta_go:"Open in the Time machine",
+ hk_s:"Pick a kind of help. Sending and going to the office is still up to you.",hk_email:"Write an email",hk_desk:"What to say",hk_list:"Checklist",hk_calc:"Do the maths",
+ hk_v_info:"Ask for information",hk_v_marcar:"Book an appointment",hk_v_estado:"Ask for an update",hk_v_reclamar:"Complain about a delay",
+ hk_to:"To (the office's email, if you know it)",hk_to_ph:"it's on the official site, under “Contactos”",hk_subj:"Subject",hk_body:"Text (you can edit it)",hk_fill:"Replace what's in [square brackets].",hk_pt:"The email is in Portuguese because it goes to a Portuguese office.",hk_pt2:"The lines are in Portuguese so you can read them out at the desk.",
+ hk_open:"Open in my email",hk_ai:"Personalise with AI",hk_call:"Call",hk_say:"When you arrive, say:",hk_ask:"Then ask:",hk_before:"Before you leave, ask for:",hk_bring:"Bring",hk_proof:"Keep the receipt (photo or PDF) with the date",hk_list_n:"{a} of {b} done",
+ calc_h:"Do the maths",calc_s:"With 2026 rules",
+ c_ss:"Social Security (11%)",c_irs:"Estimated income tax per month",c_net:"Net per month (14 payments)",c_sal_n:"Estimate using 2026 tax brackets, without deductions (expenses, dependants), which lower the tax. Actual monthly withholding follows the tax office tables.",
+ c_pct:"Exemption this year",c_irs_sem:"Tax without IRS Jovem",c_irs_com:"Tax with IRS Jovem",c_save:"You save per year",c_irsj_n:"Up to age 35, for 10 years: 100% in year 1, 75% in years 2–4, 50% in 5–7, 25% in 8–10. Limit: €29,542.15 a year.",
+ c_ss_ind:"Social Security now",c_ss_free:"exempt for {n} more month(s)",c_ss_after:"After the exemption",c_mo:"month",c_coletavel:"Part taxed (75%, per year)",c_iva:"VAT",c_iva_now:"You charge VAT straight away (above €18,750)",c_iva_next:"You lose the exemption next year (above €15,000)",c_iva_ok:"VAT-exempt (up to €15,000 a year)",
+ c_rec_n:"Simplified regime, services. First 12 months exempt from contributions; then 21.4% on 70% of income.",
+ c_ratio:"Cost ratio",c_verdict:"Reading",c_ok33:"Comfortable (up to 1/3)",c_mid:"Tight: little left for surprises",c_high:"Very high: above 50%, the limit Banco de Portugal uses for loans",c_max33:"Comfortable maximum (1/3)",c_casa_n:"Rule of thumb: housing up to 1/3 of net income.",
+ c_left:"Still to save",c_months:"You get there",c_there:"You already have enough",c_never:"Without saving every month, you won't get there",c_in_m:"in {n} months ({d})",c_emerg:"Emergency fund (3 to 6 months of costs)",c_pou_n:"Build the emergency fund first; then the goal.",
+ c_days:"Days and percentage",c_per_mo:"Per month, roughly",c_total:"Total for the leave",c_par_n:"Current rules: 120 days at 100%, 150 at 80%, 150 shared at 100%, 180 shared at 83%. The benefit isn't taxed. A reform is under discussion."},
+es:{sim_this:"Verlo en la Máquina del tiempo",tab_simular:"Máquina del tiempo",nav_simular:"Tiempo",tab_planear:"Guía paso a paso",nav_planear:"Pasos",
+ diff_plan:"Qué hacer ahora, dónde y cómo. Con email listo, qué decir en la ventanilla y las cuentas.",diff_sim:"Qué pasa después. Avanza y retrocede en el tiempo y cambia decisiones para ver otro futuro.",
+ tm_kicker:"Máquina del tiempo",tm_h:"Avanza, retrocede y |cambia lo que decidiste|.",tm_pick_p:"Elige un objetivo. Verás los próximos 3 años, mes a mes: tu dinero, el progreso y los riesgos. Los pasos son tus decisiones: cámbialos y mira cómo cambia el futuro.",
+ tm_p:"Arrastra la línea del tiempo, pulsa el gráfico o usa los botones. Cambia una decisión pasada y nace una rama nueva; compara las ramas lado a lado.",
+ tm_other:"Otro objetivo",tm_toguide:"Pasos y ayuda en la Guía",tm_ctl:"Control del tiempo",tm_today:"Hoy",tm_m1:"mes",tm_mN:"meses",tm_y1:"año",tm_yN:"años",tm_ya:"a",
+ tm_start:"Volver al inicio",tm_b12:"Retroceder 1 año",tm_b1:"Retroceder 1 mes",tm_f1:"Avanzar 1 mes",tm_f12:"Avanzar 1 año",tm_end:"Ir al final",tm_play:"Ver pasar el tiempo",tm_pause:"Pausa",tm_undo:"Deshacer",tm_redo:"Rehacer",
+ tm_keys:"Consejo: en el ordenador, ← → avanzan en el tiempo y ↑ ↓ cambian el tamaño del salto.",tm_jump:"Saltar de",tm_hz:"Ver hasta",tm_less:"Reducir",tm_more:"Aumentar",tm_back_j:"Retroceder {j}",tm_fwd_j:"Avanzar {j}",tm_from:"desde",tm_yours:"Tu camino",tm_branch:"Rama",tm_brs:"ramas",tm_36:"hasta 10 años, a tu ritmo",
+ tm_chart:"Dinero a lo largo del tiempo en cada camino",tm_k_rec:"como se recomienda",tm_k_alt:"a tu manera",tm_k_skip:"te lo saltaste",
+ tm_money:"Dinero",tm_vs_rec:"frente a lo recomendado",tm_month:"Saldo del mes",tm_month_s:"entra menos sale",tm_risk_s:"0 a 100: pasos saltados o hechos a tu manera",
+ tm_happened:"Qué pasa hasta {m}",tm_quiet:"Nada especial este mes. Avanza en el tiempo.",tm_next:"Lo siguiente",
+ tm_past:"Decisiones hasta aquí",tm_past_p:"Cambia una decisión pasada y se crea una rama nueva desde ese mes. Tu camino queda guardado.",tm_none_yet:"Aún no hay decisiones en este punto. Avanza en el tiempo.",
+ tm_future:"Decisiones que vienen",tm_future_p:"Puedes decidir ya; cambia tu camino sin crear rama.",tm_goto:"Volver a este mes",tm_help:"Ayuda en este paso",
+ tm_start_ch:"Elecciones de partida",tm_fork_hint:"Cambiar una elección de partida crea una rama nueva desde hoy.",tm_nums:"Tus números",tm_nums_s:"Valores de ejemplo: cámbialos por los tuyos.",
+ tm_cmp:"Ramas en {m}",tm_note:"Simulación con reglas conocidas de 2026 (Seguridad Social, IVA, IRS, IRS Jovem) y tus números. No sustituye a un gestor ni a un abogado.",
+ tm_newbr:"Creada la {b} desde {m}. Tu camino original sigue guardado.",
+ tm_ai:"Escenario libre con IA",tm_ai_s:"Escribe cualquier decisión y la IA narra las consecuencias. Solo funciona dentro de Claude.",tm_ai_tag:"IA",tm_life:"Toda la vida, con preguntas",tm_life_s:"Si no sabes por dónde empezar: eliges en cada etapa de la vida y puedes volver atrás.",tm_life_tag:"guiado",tm_aiback:"Máquina del tiempo",
+ tm_ev_inv:"Pones {v} al principio.",tm_ev_skip:"Te saltaste: {t}.",tm_ev_skipx:"Efecto de saltarte «{t}»: {x}",tm_ev_skipg:"Efecto de saltarte «{t}»: puedes tener multas, perder una ayuda o tener que repetir el paso.",
+ tm_ev_alt:"Lo hiciste a tu manera: {t}.",tm_ev_done:"Hecho: {t}.",tm_ev_ssend:"Se acaban los 12 meses de exención: pasas a pagar unos {v} al mes a la Seguridad Social (21,4% sobre el 70% de lo que cobras).",
+ tm_ev_iva:"A este ritmo pasas de 15.000 € al año: pierdes la exención de IVA (por encima de 18.750 € es inmediato).",tm_ev_irc:"Primer cierre de cuentas: impuesto de sociedades e IES, que hace el gestor.",tm_ev_open:"Actividad abierta: empiezas a facturar.",
+ tm_ev_job:"Primer salario: unos {v} netos al mes.",tm_ev_irsj:"Con el IRS Jovem, el 1.er año está exento hasta 29.542 €.",tm_ev_trial:"Fin del periodo de prueba (en general 90 días): desde aquí, el despido tiene reglas.",
+ tm_ev_rent:"Empiezas a pagar {v} al mes: el {p}% de tus ingresos (por encima del 33% va justo).",tm_ev_birth:"Nacimiento: pide el permiso parental y la prestación por hijo.",tm_ev_leave:"Termina el permiso parental inicial: vuelta al trabajo o permiso ampliado.",
+ tm_ev_study:"Empiezas el curso: matrícula de {v} al año.",tm_ev_move:"Mudanza al nuevo país: cambia el domicilio fiscal y pide la tarjeta sanitaria europea.",tm_ev_pens:"En un año ahorraste {v} para la jubilación.",
+ tm_ev_irs:"Declaración de la renta (1 de abril a 30 de junio).",tm_ev_neg:"El dinero queda en negativo: necesitas recortar gastos, aplazar o financiarte.",
+ tm_cta_h:"¿Y si lo haces diferente?",tm_cta_p:"En la Máquina del tiempo ves este camino en los próximos 3 años, mes a mes, y puedes cambiar cualquier decisión.",tm_cta_dev:"Ya tienes {n} desvío(s) marcado(s).",tm_cta_go:"Abrir en la Máquina del tiempo",
+ hk_s:"Elige una ayuda. Enviar e ir a la ventanilla sigue siendo cosa tuya.",hk_email:"Escribir email",hk_desk:"Qué decir",hk_list:"Lista",hk_calc:"Hacer cuentas",
+ hk_v_info:"Pedir información",hk_v_marcar:"Pedir cita",hk_v_estado:"Estado del trámite",hk_v_reclamar:"Reclamar retraso",
+ hk_to:"Para (email de la entidad, si lo sabes)",hk_to_ph:"está en la web oficial, en «Contactos»",hk_subj:"Asunto",hk_body:"Texto (puedes editarlo)",hk_fill:"Sustituye lo que está entre [corchetes].",hk_pt:"El email está en portugués porque va a una entidad portuguesa.",hk_pt2:"Las frases están en portugués para que las leas en la ventanilla.",
+ hk_open:"Abrir en mi email",hk_ai:"Personalizar con IA",hk_call:"Llamar",hk_say:"Al llegar, di:",hk_ask:"Después pregunta:",hk_before:"Antes de irte, pide:",hk_bring:"Llevar",hk_proof:"Guardar el justificante (foto o PDF) con la fecha",hk_list_n:"{a} de {b} hechos",
+ calc_h:"Hacer cuentas",calc_s:"Con las reglas de 2026",
+ c_ss:"Seguridad Social (11%)",c_irs:"IRS estimado al mes",c_net:"Neto al mes (14 pagas)",c_sal_n:"Estimación con los tramos del IRS de 2026, sin deducciones (gastos, dependientes), que bajan el impuesto. La retención mensual real sigue las tablas de Hacienda.",
+ c_pct:"Exención este año",c_irs_sem:"IRS sin IRS Jovem",c_irs_com:"IRS con IRS Jovem",c_save:"Ahorras al año",c_irsj_n:"Hasta los 35 años, 10 años: 100% el 1.º, 75% del 2.º al 4.º, 50% del 5.º al 7.º, 25% del 8.º al 10.º. Límite: 29.542,15 € al año.",
+ c_ss_ind:"Seguridad Social ahora",c_ss_free:"exento(a) {n} mes(es) más",c_ss_after:"Después de la exención",c_mo:"mes",c_coletavel:"Parte que tributa (75%, al año)",c_iva:"IVA",c_iva_now:"Cobras IVA ya (por encima de 18.750 €)",c_iva_next:"Pierdes la exención el año siguiente (por encima de 15.000 €)",c_iva_ok:"Exento(a) de IVA (hasta 15.000 € al año)",
+ c_rec_n:"Régimen simplificado, servicios. Primeros 12 meses exentos de cotizaciones; después 21,4% sobre el 70% de los ingresos.",
+ c_ratio:"Tasa de esfuerzo",c_verdict:"Lectura",c_ok33:"Cómoda (hasta 1/3)",c_mid:"Justa: queda poco para imprevistos",c_high:"Muy alta: por encima del 50%, el límite que usa el Banco de Portugal en los créditos",c_max33:"Máximo cómodo (1/3)",c_casa_n:"Regla práctica: vivienda hasta 1/3 de los ingresos netos.",
+ c_left:"Falta reunir",c_months:"Llegas",c_there:"Ya tienes suficiente",c_never:"Sin ahorrar cada mes, no llegas",c_in_m:"en {n} meses ({d})",c_emerg:"Fondo de emergencia (3 a 6 meses de gastos)",c_pou_n:"Primero el fondo de emergencia; después, la meta.",
+ c_days:"Días y porcentaje",c_per_mo:"Al mes, aproximadamente",c_total:"Total del permiso",c_par_n:"Reglas actuales: 120 días al 100%, 150 al 80%, 150 compartidos al 100%, 180 compartidos al 83%. La prestación no tributa. Hay una reforma en debate."}};
+for(const lg in UI5)Object.assign(UI[lg],UI5[lg]);
+// textos da apresentação, alinhados com as novas secções
+Object.assign(UI.pt,{in_1t:"Máquina do tempo",in_1p:"Avança e recua mês a mês, muda uma decisão do passado e vê nascer outro futuro, com dinheiro, progresso e riscos.",in_2t:"Guia passo a passo",in_2p:"O que fazer, onde e como, pela ordem certa e adaptado a ti. Marca o que fizeste de facto.",in_3p:"Em cada passo tens o email pronto a enviar, o que dizer ao balcão, a lista do que levar e as contas feitas."});
+Object.assign(UI.en,{in_1t:"Time machine",in_1p:"Move forward and back month by month, change a past decision and watch another future appear, with money, progress and risks.",in_2t:"Step-by-step guide",in_2p:"What to do, where and how, in the right order and tailored to you. Mark what you actually did.",in_3p:"Each step has a ready-to-send email, what to say at the desk, your checklist and the maths done."});
+Object.assign(UI.es,{in_1t:"Máquina del tiempo",in_1p:"Avanza y retrocede mes a mes, cambia una decisión pasada y mira nacer otro futuro, con dinero, progreso y riesgos.",in_2t:"Guía paso a paso",in_2p:"Qué hacer, dónde y cómo, en el orden correcto y adaptado a ti. Marca lo que hiciste de verdad.",in_3p:"Cada paso tiene el email listo para enviar, qué decir en la ventanilla, la lista de lo que llevar y las cuentas hechas."});
+function vSimular(){
+  if(TMS.ai&&sampleState==="ok")return `<div class="row-btns"><button class="btn sm" id="tmAiBack">← ${u("tm_aiback")}</button></div>`+vSimularAI();
+  return vTime()}
+document.addEventListener("click",e=>{const b=e.target.closest("button");if(b&&b.id==="tmAiBack"){TMS.ai=0;tmSave();render();e.stopImmediatePropagation()}},true);
+
 // ================= Moldura e render =================
 function chrome(){
   const nav=TABS.map(k=>`<button data-tab="${k}" aria-current="${U.tab===k||(k==="simular"&&U.tab==="viver")?"page":"false"}">${icon(k)}<span>${u("tab_"+k)}</span></button>`).join("");
@@ -2268,7 +2803,7 @@ document.addEventListener("click",e=>{
   if(b.id==="addCol"){U.cmp.push({g:(G.find(g=>!U.cmp.some(c=>c.g===g.id))||G[0]).id,f:{}});render();return}
   if(d.rmcol!==undefined){U.cmp.splice(+d.rmcol,1);render();return}
   if(d.colf!==undefined){const c=U.cmp[+d.colf];c.f=Object.assign({},c.f,{[d.fk]:d.v});render();return}
-  if(d.simgoal){const pl=plan(d.simgoal);SD.ideia=L(pl.g.t)+" ("+pl.g.forks.map(fk=>L(fk.o.find(o=>o[0]===pl.f[fk.id])[1])).join(", ")+")";SIM=null;store("ll3_sim",null);U.tab="simular";render();toTop();return}
+  if(d.simgoal){TMS.gid=d.simgoal;TMS.ai=0;tmSave();U.tab="simular";render();toTop();return}
   if(d.tpl){SD.ideia=d.tpl;render();return}
   if(b.id==="simGo"){simStart();return}
   if(b.id==="simStep"){simStep();return}
@@ -2323,16 +2858,4 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape"&&introOpen){closeInt
 render();
 
 </script>
-<style>.portfolio-return{display:block;margin:12px 0 18px;color:var(--muted);font:12px var(--f-ui);text-decoration:none}.portfolio-return:hover{text-decoration:underline}.public-demo-note{padding:10px 16px;background:var(--accent-soft);border-bottom:1px solid var(--line);font:12px var(--f-ui);color:var(--ink)}</style><script>
-(()=>{const original=chrome;chrome=function(){original();const side=document.querySelector('#side .brand');if(side)side.insertAdjacentHTML('afterend','<a class="portfolio-return" href="../lifelab.html">← Sobre o projeto / Portefólio</a>');const mt=document.querySelector('#mtop .brand');if(mt)mt.innerHTML='<a href="../lifelab.html" style="color:inherit;text-decoration:none" aria-label="Voltar à apresentação do LifeLab">← LifeLab</a>';};
-UI.pt.in_1p='Experimenta a vida guiada com decisões e consequências ilustrativas. A simulação livre com IA está em preparação.';
-UI.en.in_1p='Try the guided life with illustrative choices and consequences. Free-form AI simulation is being prepared.';
-UI.es.in_1p='Prueba la vida guiada con decisiones y consecuencias ilustrativas. La simulación libre con IA está en preparación.';
-UI.pt.in_3p='Consulta os passos e as entidades de referência. A preparação automática de pedidos com IA ainda não está ligada.';
-UI.pt.cu_p='Dados incluídos no protótipo, com fonte e ano indicados. Verifica a atualidade na fonte antes de os usar numa decisão.';
-UI.pt.in_2p='Marca o que fizeste, explora caminhos e compara opções. As projeções livres e os ramos com IA ainda não estão ligados.';
-UI.en.in_2p='Record completed steps and compare options. Free-form AI projections and branches are not connected yet.';
-UI.es.in_2p='Marca los pasos completados y compara opciones. Las proyecciones y ramas libres con IA aún no están conectadas.';
-const guidedOriginal=vViver;vViver=function(){return guidedOriginal().replace(/<button class="btn" data-tab="simular">[\s\S]*?<\/button>/g,'');};
-render();})();
-</script></body></html>
+</body></html>
