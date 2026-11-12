@@ -237,3 +237,6 @@ body{background:radial-gradient(900px 520px at 88% -10%,#b9a4ff2b,transparent 60
 @media(max-width:1100px){.projectgrid,.projectgrid.featured{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:700px){.projectgrid,.projectgrid.featured{grid-template-columns:1fr}.project-art,.projectgrid.featured .project:first-child .project-art{height:220px}}
 @media(max-width:980px){.sound{order:1;margin-left:auto}.language-switch{margin-left:0}}
+.project-art .live{position:absolute;top:0;left:0;width:1280px;height:800px;border:0;transform-origin:0 0;z-index:1;opacity:0;pointer-events:none;background:#fff;transition:opacity .4s}
+@media(hover:hover){.project:hover .live.ready{opacity:1}}
+@media(hover:hover){.project:hover .preview{object-position:50% 0}}

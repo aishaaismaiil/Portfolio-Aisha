@@ -15,3 +15,11 @@ document.querySelectorAll('.project,.links a,.btn,.filterbar button,.tile,.servi
 document.addEventListener('click',e=>{if(e.target.closest('.sound'))return;if(e.target.closest('a,button,summary'))click()});
 btn&&btn.addEventListener('click',()=>{unlock();set(!on);if(on)setTimeout(chime,30)});
 })();
+
+/* Pré-visualização ao vivo: ao passar o cursor, o cartão carrega o site real em miniatura. */
+(()=>{if(!matchMedia('(hover:hover)').matches)return;
+document.querySelectorAll('.project').forEach(card=>{const link=card.querySelector('.live-link'),art=card.querySelector('.project-art');if(!link||!art)return;let timer=null,frame=null;
+const fit=()=>{if(frame)frame.style.transform='scale('+(art.clientWidth/1280)+')';frame&&(frame.style.height=Math.ceil(art.clientHeight*1280/art.clientWidth)+'px')};
+card.addEventListener('pointerenter',e=>{if(e.pointerType!=='mouse')return;timer=setTimeout(()=>{if(!frame){frame=document.createElement('iframe');frame.className='live';frame.title='';frame.setAttribute('aria-hidden','true');frame.tabIndex=-1;frame.loading='eager';frame.addEventListener('load',()=>frame.classList.add('ready'));frame.src=link.href;art.insertBefore(frame,art.querySelector('.preview-tag'))}fit()},250)});
+card.addEventListener('pointerleave',()=>clearTimeout(timer));
+addEventListener('resize',fit)})})();
