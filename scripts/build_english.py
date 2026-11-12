@@ -18,7 +18,7 @@ class Translate(HTMLParser):
    key=m.group(1).lower();value=html.unescape(m.group(3));out=value
    if key in ('aria-label','title','alt','placeholder','content') and value in D:out=D[value]
    if key=='lang' and tag=='html':out='en'
-   if key in ('href','src') and (value.split('?')[0] in ('style.css','site.js','favicon.svg') or value.startswith(('downloads/','life-lab/'))):out='../'+value
+   if key in ('href','src') and (value.split('?')[0] in ('style.css','site.js','favicon.svg') or value.startswith(('downloads/','life-lab/','previews/'))):out='../'+value
    if out==value:return m.group(0)
    return m.group(1)+'='+m.group(2)+html.escape(out,quote=True)+m.group(2)
   new=re.sub(r'([\w-]+)\s*=\s*([\"\x27])(.*?)\2',repl,raw,flags=re.S)

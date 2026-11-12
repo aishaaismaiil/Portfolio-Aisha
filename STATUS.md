@@ -5,7 +5,7 @@
 - LifeLab geral: `life-lab/index.html`, com vida guiada independente.
 - SENSORA Social: investigação sobre participação social de pessoas surdocegas, sem validação ou eficácia alegadas.
 - LarBond: página de projeto em `larbond.html`; demonstração independente em https://aishaaismaiil.github.io/LarBond/.
-- Novo visual (12/11/2026): tema escuro, menu em cápsula com separadores e página `projetos.html` com todos os projetos.
+- Novo visual (12/11/2026): tema escuro em rosa e lilás, menu em cápsula com separadores, página `projetos.html` em grelha, pré-visualização ao passar o cursor (imagens em `previews/`) e sons da interface com botão para desligar.
 - ConduzPT: Godot 4, Chelas Protótipo 02, projeto completo no ZIP de downloads. Não é uma aplicação web.
 - Supabase: sete tabelas com RLS e separação por projeto/utilizador, quatro projetos registados e três versões publicadas. Os dados antigos da Stellamus não foram alterados. `database/schema.sql` já foi aplicado.
 
