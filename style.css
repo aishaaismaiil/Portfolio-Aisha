@@ -240,3 +240,5 @@ body{background:radial-gradient(900px 520px at 88% -10%,#b9a4ff2b,transparent 60
 .project-art .live{position:absolute;top:0;left:0;width:1280px;height:800px;border:0;transform-origin:0 0;z-index:1;opacity:0;pointer-events:none;background:#fff;transition:opacity .4s}
 @media(hover:hover){.project:hover .live.ready{opacity:1}}
 @media(hover:hover){.project:hover .preview{object-position:50% 0}}
+
+.project-art.estivemus{background:linear-gradient(135deg,#f3e6d3,#e5c3a3)}
