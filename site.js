@@ -2,10 +2,10 @@ const menu=document.querySelector('.menu'),links=document.querySelector('.links'
 document.documentElement.classList.add('js');(()=>{const els=document.querySelectorAll('.reveal');if(!('IntersectionObserver' in window)){els.forEach(e=>e.classList.add('in'));return}const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{rootMargin:'0px 0px -8% 0px'});els.forEach(e=>io.observe(e))})();
 
 /* Sons da interface: sintetizados no navegador, sem ficheiros. Ligados por defeito, com botão para desligar. */
-(()=>{const btn=document.querySelector('.sound');let on=true;try{on=localStorage.getItem('ai_sound')!=='off'}catch(e){}
+(()=>{const btn=document.querySelector('.sound');let on=false;try{on=localStorage.getItem('ai_sound')==='on'}catch(e){}
 let ctx=null,unlocked=false,last=0;
 const set=v=>{on=v;btn&&btn.setAttribute('aria-pressed',String(v));try{localStorage.setItem('ai_sound',v?'on':'off')}catch(e){}};set(on);
-const unlock=()=>{if(unlocked)return;try{ctx=ctx||new (window.AudioContext||window.webkitAudioContext)();ctx.resume();unlocked=true}catch(e){}};
+const unlock=()=>{if(unlocked||!on)return;try{ctx=ctx||new (window.AudioContext||window.webkitAudioContext)();ctx.resume();unlocked=true}catch(e){}};
 ['pointerdown','keydown','touchstart'].forEach(t=>window.addEventListener(t,unlock,{passive:true}));
 function tone(freqs,dur,vol,type){if(!on||!ctx||ctx.state!=='running')return;const t=ctx.currentTime;freqs.forEach((f,i)=>{const o=ctx.createOscillator(),g=ctx.createGain(),st=t+i*0.055;o.type=type||'sine';o.frequency.setValueAtTime(f,st);g.gain.setValueAtTime(0.0001,st);g.gain.exponentialRampToValueAtTime(vol,st+0.012);g.gain.exponentialRampToValueAtTime(0.0001,st+dur);o.connect(g).connect(ctx.destination);o.start(st);o.stop(st+dur+0.02)})}
 const hover=()=>{const n=performance.now();if(n-last<70)return;last=n;tone([1320],0.07,0.018,'sine')};
@@ -13,13 +13,6 @@ const click=()=>tone([880,1320],0.16,0.04,'triangle');
 const chime=()=>tone([660,990,1320],0.35,0.035,'sine');
 document.querySelectorAll('.project,.links a,.btn,.filterbar button,.tile,.service,.faq summary').forEach(el=>el.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse')hover()}));
 document.addEventListener('click',e=>{if(e.target.closest('.sound'))return;if(e.target.closest('a,button,summary'))click()});
-btn&&btn.addEventListener('click',()=>{unlock();set(!on);if(on)setTimeout(chime,30)});
+btn&&btn.addEventListener('click',()=>{set(!on);unlock();if(on)setTimeout(chime,30)});
 })();
 
-/* Pré-visualização ao vivo: ao passar o cursor, o cartão carrega o site real em miniatura. */
-(()=>{if(!matchMedia('(hover:hover)').matches)return;
-document.querySelectorAll('.project').forEach(card=>{const link=card.querySelector('.live-link'),art=card.querySelector('.project-art');if(!link||!art)return;let timer=null,frame=null;
-const fit=()=>{if(frame)frame.style.transform='scale('+(art.clientWidth/1280)+')';frame&&(frame.style.height=Math.ceil(art.clientHeight*1280/art.clientWidth)+'px')};
-card.addEventListener('pointerenter',e=>{if(e.pointerType!=='mouse')return;timer=setTimeout(()=>{if(!frame){frame=document.createElement('iframe');frame.className='live';frame.title='';frame.setAttribute('aria-hidden','true');frame.tabIndex=-1;frame.loading='eager';frame.addEventListener('load',()=>frame.classList.add('ready'));frame.src=link.href;art.insertBefore(frame,art.querySelector('.preview-tag'))}fit()},250)});
-card.addEventListener('pointerleave',()=>clearTimeout(timer));
-addEventListener('resize',fit)})})();
